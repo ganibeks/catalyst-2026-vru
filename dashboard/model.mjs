@@ -71,6 +71,13 @@ export function economics({ capex, savings, runningCost, horizon, creditPrice = 
   return { creditRevenue, netSavings, payback, creditlessNet, creditlessPayback, requiredSavings };
 }
 
+export function enginePowerBasis({ wetFuelKmolH, waterMoleFraction, lowerHeatingValueMjNm3, annualElectricityMWh, operatingHours }) {
+  const dryFuelNm3H = wetFuelKmolH * (1 - waterMoleFraction) * baseline.normalMolarVolumeM3PerKmol;
+  const annualFuelMWh = dryFuelNm3H * lowerHeatingValueMjNm3 * operatingHours / 3600;
+  const requiredElectricityShare = annualElectricityMWh / annualFuelMWh;
+  return { dryFuelNm3H, annualFuelMWh, requiredElectricityShare };
+}
+
 function urlInteger(params, key, fallback, min, max) {
   const value = params.get(key);
   if (value === null || !/^\d+$/.test(value)) return fallback;

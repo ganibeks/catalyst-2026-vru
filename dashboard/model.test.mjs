@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFile, access } from "node:fs/promises";
 import { test } from "node:test";
 import {
-  baseline, collectionProfile, defaults, economics, generatedPerDay, hourlyCsv,
+  baseline, collectionProfile, defaults, economics, enginePowerBasis, generatedPerDay, hourlyCsv,
   operatingCases, parseCsv, scenarioUrl, stateFromUrl, technologies,
 } from "./model.mjs";
 
@@ -45,6 +45,16 @@ test("gas-engine economics reports distinct payback with and without credits", (
   assert.equal(withCredits.creditlessPayback, 224500 / 56700);
   assert.equal(economics(cost).requiredSavings, 31700 + 224500 / 15);
   assert.equal(economics({ ...cost, savings: 31700 }).payback, null);
+});
+
+test("fuel balance converts the wet Aspen stream and reconciles the deck's electricity target", () => {
+  const fuel = { wetFuelKmolH: 1.5, waterMoleFraction: 0.0202, lowerHeatingValueMjNm3: 38, annualElectricityMWh: 1090 };
+  const fullYear = enginePowerBasis({ ...fuel, operatingHours: 8760 });
+  almost(fullYear.dryFuelNm3H, 32.9418558);
+  almost(fullYear.annualFuelMWh, 3046.02359964);
+  almost(fullYear.requiredElectricityShare * fullYear.annualFuelMWh, 1090);
+  const shorterYear = enginePowerBasis({ ...fuel, operatingHours: 8000 });
+  assert.ok(shorterYear.requiredElectricityShare > fullYear.requiredElectricityShare);
 });
 
 test("share links restore scenario settings and reject invalid inputs", () => {

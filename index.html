@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f0f4f4">
   <meta name="description" content="Team Sunkar's Catalyst 2026 dashboard for a six-tank oil farm. Explore methane collection, Aspen HYSYS scenarios and project economics.">
   <title>Team Sunkar | Catalyst 2026 VRU</title>
-  <link rel="stylesheet" href="./dashboard/styles.css?v=4">
-  <script type="module" src="./dashboard/app.mjs?v=4"></script>
+  <link rel="stylesheet" href="./dashboard/styles.css?v=5">
+  <script type="module" src="./dashboard/app.mjs?v=5"></script>
 </head>
 <body>
   <a class="skip" href="#main" data-i="skip">Skip to content</a>
@@ -173,6 +173,20 @@
           <div class="econ-target"><span data-i="requiredSavings">Grid savings needed for 15-year payback</span><strong id="required-savings">—</strong><small data-i="simpleBasis">Running costs + installed CAPEX / 15 years − credit revenue, floored at zero.</small></div>
         </div>
       </div>
+      <details class="method source-notes" id="power-check">
+        <summary data-i="powerCheckTitle">Fuel balance behind 1,090 MWh/year</summary>
+        <p data-i="powerCheckBasis">Aspen’s summer base case delivers 1.500 kmol/h of fuel gas with 2.02 mol.% water. The check uses normal volume at 0 °C and 101.325 kPa abs., takes 38 MJ/Nm³ from the summer peak process diagram as an approximate dry-gas LHV and assumes that the flow is usable for all 8,760 hours.</p>
+        <dl class="metric-grid" id="power-metrics" hidden>
+          <div><dt data-i="powerDryFlow">Dry fuel gas flow</dt><dd id="power-dry-flow"></dd></div>
+          <div><dt data-i="powerFuelEnergy">Available fuel energy in this check</dt><dd id="power-fuel-energy"></dd></div>
+          <div><dt data-i="powerElectricShare">Fuel energy needed as displaced electricity</dt><dd id="power-electric-share"></dd></div>
+        </dl>
+        <p data-i="powerCheckLimits">The percentage is the ratio of displaced electricity to available fuel energy under these assumptions. Fewer operating hours or lower usable flow raise the required fraction. The site balance also needs the engine’s load curve and VRU auxiliary demand.</p>
+        <div class="source-links">
+          <a href="./presentation/team-sunkar-catalyst-2026.pdf#page=22" data-i="powerStreamSource">Aspen fuel gas, slide 22</a>
+          <a href="./presentation/team-sunkar-catalyst-2026.pdf#page=17" data-i="powerLhvSource">Estimated LHV, slide 17</a>
+        </div>
+      </details>
       <details class="method source-notes">
         <summary data-i="climateTitle">Methane and CO₂-equivalent assumptions</summary>
         <p data-i="climateBasis">The presentation uses GWP₁₀₀ = 27.2. That gives about 4,765 t CO₂e/year at the case baseline of 175.2 t CH₄/year, or about 4,670 t CO₂e/year in gross methane terms at 98% capture. IPCC AR6 WGI Table 7.15 gives 29.8 for fossil methane. The credit calculation needs its own approved accounting method and project emissions.</p>
@@ -315,7 +329,11 @@
   <dialog id="evidence-dialog" aria-labelledby="evidence-title">
     <div class="dialog-head"><h2 id="evidence-title"></h2><form method="dialog"><button class="button outline" type="submit" data-i="close">Close</button></form></div>
     <p id="evidence-basis" class="evidence-basis" hidden></p>
-    <dl id="evidence-metrics" class="evidence-metrics" hidden></dl>
+    <dl id="evidence-metrics" class="metric-grid" hidden></dl>
+    <section id="compression-evidence" aria-labelledby="compression-evidence-title" hidden>
+      <h3 id="compression-evidence-title" data-i="compressionEvidenceTitle">Compression and cooling stream results</h3>
+      <dl id="compression-metrics" class="metric-grid"></dl>
+    </section>
     <img id="evidence-image" alt="" width="1920" height="1080">
     <div class="dialog-actions">
       <a class="button outline" id="evidence-source" target="_blank" rel="noopener" data-i="openImage">Open full image ↗</a>

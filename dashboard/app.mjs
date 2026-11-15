@@ -1,8 +1,8 @@
 import {
-  baseline, collectionProfile, defaults, economics, generatedPerDay, hourlyCsv,
+  baseline, collectionProfile, defaults, economics, enginePowerBasis, generatedPerDay, hourlyCsv,
   parseCsv, scenarioUrl, stateFromUrl, technologies,
-} from "./model.mjs";
-import { message, russian } from "./copy.mjs?v=4";
+} from "./model.mjs?v=5";
+import { message, russian } from "./copy.mjs?v=5";
 import { chartHour, drawFlowChart } from "./chart.mjs?v=2";
 
 const get = id => document.getElementById(id);
@@ -12,7 +12,14 @@ const translated = [...document.querySelectorAll("[data-i]")].map(node => ({
 }));
 const collectionInputs = ["capacity", "access", "availability", "offtake"];
 const costInputs = ["capex", "grid-savings", "running-cost", "credit-price", "credit-volume"];
-const sourcePages = { "compression-cooling": 11, adsorption: 12, absorption: 13, "hybrid-membrane": 14, pfd: 17 };
+const sourcePages = {
+  "compression-cooling": { "summer-peak": 21, "summer-average": 22, winter: 23 },
+  adsorption: { "summer-peak": 24, "summer-average": 25, winter: 26 },
+  absorption: { "summer-peak": 27, "summer-average": 13, winter: 13 },
+  "hybrid-membrane": { "summer-peak": 28, "summer-average": 29, winter: 30 },
+};
+// Case 2 fuel-gas stream (PDF p. 22) and the fuel LHV estimate (PDF p. 17).
+const engineFuel = { wetFuelKmolH: 1.500, waterMoleFraction: 0.0202, lowerHeatingValueMjNm3: 38 };
 const state = stateFromUrl(location.href);
 const canvas = get("flow-chart");
 let profile;
@@ -149,26 +156,44 @@ function showEvidence(title, src, model, result) {
   image.src = src;
   image.alt = t(title);
   get("evidence-source").href = src;
-  get("evidence-slide").href = "./presentation/team-sunkar-catalyst-2026.pdf#page=" + sourcePages[title];
+  const sourcePage = result ? sourcePages[title][result.scenario] : 17;
+  get("evidence-slide").href = "./presentation/team-sunkar-catalyst-2026.pdf#page=" + sourcePage;
   const metrics = get("evidence-metrics");
   const basis = get("evidence-basis");
   metrics.hidden = basis.hidden = !result;
   if (result) {
     basis.textContent = t(result.result_basis);
-    metrics.replaceChildren(...technologyMetrics(result).map(metric => {
-      const pair = document.createElement("div");
-      const label = document.createElement("dt");
-      const value = document.createElement("dd");
-      label.textContent = t(metric[0]);
-      value.textContent = formatMetric(metric);
-      pair.append(label, value);
-      return pair;
-    }));
+    renderMetricList(metrics, technologyMetrics(result));
+  }
+  const stream = title === "compression-cooling" && simulationData.compression.find(row => row.scenario === result.scenario);
+  get("compression-evidence").hidden = !stream;
+  if (stream) {
+    const feed = simulationData.feed.find(row => row.scenario === result.scenario);
+    renderMetricList(get("compression-metrics"), [
+      ["wetFeed", stream.feed_kg_h, t("massHour"), 2],
+      ["fuelGas", stream.fuel_gas_kg_h, t("massHour"), 2],
+      ["waterRemoved", stream.inlet_liquid_kg_h + stream.outlet_liquid_kg_h, t("massHour"), 4],
+      ["aspenDischarge", stream.compressor_discharge_temp_c, "°C", 1],
+      ["fuelTemp", feed.cooler_target_c, "°C", 0],
+      ["fuelPressure", stream.outlet_pressure_kpa_abs, t("pressure"), 0],
+    ]);
   }
   const modelLink = get("evidence-model");
   modelLink.hidden = model === null;
   if (model) modelLink.href = model;
   get("evidence-dialog").showModal();
+}
+
+function renderMetricList(list, metrics) {
+  list.replaceChildren(...metrics.map(metric => {
+    const pair = document.createElement("div");
+    const label = document.createElement("dt");
+    const value = document.createElement("dd");
+    label.textContent = t(metric[0]);
+    value.textContent = formatMetric(metric);
+    pair.append(label, value);
+    return pair;
+  }));
 }
 
 function technologyMetrics(row) {
@@ -183,7 +208,7 @@ function technologyMetrics(row) {
   ];
 }
 
-function formatMetric([key, value, unit, digits]) {
+function formatMetric([, value, unit, digits]) {
   if (value === null) return "—";
   return number(value, digits) + (unit === "%" ? unit : "\u00a0" + unit);
 }
@@ -287,6 +312,19 @@ function renderEconomics() {
     payback > costBasis.horizon ? "beyondHorizon" : "withinHorizon"));
 }
 
+function renderPowerCheck() {
+  if (!costBasis) return;
+  const basis = enginePowerBasis({
+    ...engineFuel,
+    annualElectricityMWh: costBasis.annualElectricityMWh,
+    operatingHours: baseline.hoursPerYear,
+  });
+  set("power-dry-flow", number(basis.dryFuelNm3H, 1) + " " + t("dryRate"));
+  set("power-fuel-energy", number(basis.annualFuelMWh) + " " + t("thermalYear"));
+  set("power-electric-share", percent(basis.requiredElectricityShare));
+  get("power-metrics").hidden = false;
+}
+
 async function getCsv(name, numericFields) {
   const response = await fetch("./data/" + name + ".csv");
   if (!response.ok) throw new Error("Could not load " + name);
@@ -295,10 +333,15 @@ async function getCsv(name, numericFields) {
 
 async function loadSimulation() {
   try {
-    const [results, feed] = await Promise.all([
+    const [results, feed, compression] = await Promise.all([
       getCsv("simulation-results", ["shaft_power_kw", "cooling_duty_kw_thermal", "ch4_to_product_pct",
         "ch4_to_vent_kg_h", "lean_oil_t_h", "ch4_in_product_mol_pct"]),
-      getCsv("feed-basis", ["feed_temp_c", "feed_pressure_kpa_abs", "feed_kmol_h", "water_mol_pct", "ch4_mol_pct"]),
+      getCsv("feed-basis", ["feed_temp_c", "feed_pressure_kpa_abs", "feed_kmol_h", "water_mol_pct", "ch4_mol_pct", "cooler_target_c"]),
+      getCsv("compression-streams", ["feed_kg_h", "compressor_discharge_temp_c", "outlet_pressure_kpa_abs",
+        "fuel_gas_kg_h", "inlet_liquid_kg_h", "outlet_liquid_kg_h"]).catch(error => {
+        console.warn(error.message);
+        return [];
+      }),
     ]);
     for (const caseName of ["summer-average", "summer-peak", "winter"]) {
       if (!feed.some(row => row.scenario === caseName) ||
@@ -309,7 +352,7 @@ async function loadSimulation() {
     if (results.some(row => !/^evidence\/aspen-hysys\/[a-z-]+\/[a-z-]+\.png$/.test(row.source))) {
       throw new Error("Invalid simulation evidence path");
     }
-    simulationData = { results, feed };
+    simulationData = { results, feed, compression };
   } catch (error) {
     simulationUnavailable = true;
     console.warn(error.message);
@@ -323,13 +366,14 @@ async function loadEconomics() {
     const metrics = Object.fromEntries(data.map(row => [row.metric, row]));
     const { value_low: minCapex, value_high: maxCapex } = metrics.installed_capital_ex_vat;
     const horizon = metrics.analysis_horizon.value_low;
+    const annualElectricityMWh = metrics.annual_displaced_grid_power.value_low;
     const savings = metrics.annual_grid_power_savings.value_low;
     const running = metrics.annual_running_costs.value_low;
     const creditPrice = metrics.assumed_credit_price.value_low;
     const creditVolume = metrics.assumed_credit_volume.value_low;
-    if (![minCapex, maxCapex, horizon, savings, running, creditPrice, creditVolume].every(Number.isFinite) ||
-      horizon <= 0 || minCapex <= 0 || maxCapex < minCapex) throw new Error("Invalid cost basis");
-    costBasis = { minCapex, maxCapex, horizon };
+    if (![minCapex, maxCapex, horizon, savings, running, creditPrice, creditVolume, annualElectricityMWh].every(Number.isFinite) ||
+      horizon <= 0 || minCapex <= 0 || maxCapex < minCapex || annualElectricityMWh <= 0) throw new Error("Invalid cost basis");
+    costBasis = { minCapex, maxCapex, horizon, annualElectricityMWh };
     const slider = get("capex");
     slider.min = minCapex;
     slider.max = maxCapex;
@@ -344,6 +388,7 @@ async function loadEconomics() {
     console.warn(error.message);
   }
   renderEconomics();
+  renderPowerCheck();
 }
 
 for (const key of collectionInputs) {
@@ -387,6 +432,7 @@ get("language").addEventListener("click", () => {
   renderCollection();
   renderTechnology();
   renderEconomics();
+  renderPowerCheck();
 });
 get("reset").addEventListener("click", () => {
   state.schedule = defaults.schedule;

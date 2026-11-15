@@ -235,10 +235,11 @@ dialog::backdrop { background: #071a25cb; }
 .dialog-head h2 { font-size: clamp(1.3rem, 3.2vw, 2rem); }
 dialog img { width: 100%; height: auto; max-height: 68dvh; object-fit: contain; }
 .evidence-basis { font-size: 0.87rem; color: var(--muted); }
-.evidence-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 136px), 1fr)); gap: 1px; margin: 10px 0 16px; background: var(--line); border: 1px solid var(--line); }
-.evidence-metrics div { padding: 7px 10px; background: var(--paper); }
-.evidence-metrics dt { font-size: 0.75rem; color: var(--muted); }
-.evidence-metrics dd { margin: 2px 0 0; font-size: 0.9rem; font-weight: 720; font-variant-numeric: tabular-nums; }
+#compression-evidence-title { font-size: 1.05rem; }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 136px), 1fr)); gap: 1px; margin: 10px 0 16px; background: var(--line); border: 1px solid var(--line); }
+.metric-grid div { padding: 7px 10px; background: var(--paper); }
+.metric-grid dt { font-size: 0.75rem; color: var(--muted); }
+.metric-grid dd { margin: 2px 0 0; font-size: 0.9rem; font-weight: 720; font-variant-numeric: tabular-nums; }
 .dialog-actions { margin-top: 12px; }
 #share-dialog { width: min(545px, calc(100% - 28px)); }
 #share-url { margin-top: 7px; }
