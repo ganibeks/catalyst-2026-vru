@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f0f4f4">
   <meta name="description" content="Team Sunkar's Catalyst 2026 dashboard for a six-tank oil farm. Explore methane collection, Aspen HYSYS scenarios and project economics.">
   <title>Team Sunkar | Catalyst 2026 VRU</title>
-  <link rel="stylesheet" href="./dashboard/styles.css?v=3">
-  <script type="module" src="./dashboard/app.mjs?v=3"></script>
+  <link rel="stylesheet" href="./dashboard/styles.css?v=4">
+  <script type="module" src="./dashboard/app.mjs?v=4"></script>
 </head>
 <body>
   <a class="skip" href="#main" data-i="skip">Skip to content</a>
@@ -17,7 +17,7 @@
         <span>Team Sunkar<span class="brand-small">Catalyst 2026</span></span>
       </a>
       <nav class="nav" aria-label="Dashboard sections">
-        <a href="#capture" data-i="navCapture">Collection</a>
+        <a href="#solution" data-i="navSolution">Solution</a>
         <a href="#technology" data-i="navTechnology">Technology</a>
         <a href="#economics" data-i="navEconomics">Economics</a>
         <a href="#files" data-i="navFiles">Files</a>
@@ -35,9 +35,9 @@
         <div class="hero-copy">
           <p class="case-label" data-i="heroEyebrow">KMG Engineering, case 02</p>
           <h1 id="hero-title" data-i="heroTitle">Vapor recovery for six oil tanks</h1>
-          <p class="hero-summary" data-i="heroSummary">The proposed VRU compresses and cools captured vapors. The gas fuels an existing engine and displaces grid electricity.</p>
+          <p class="hero-summary" data-i="heroSummary">Team Sunkar selected compression and cooling. The proposal sends recovered gas to an existing site engine with assumed spare capacity.</p>
           <div class="hero-actions">
-            <a class="button solid" href="#capture" data-i="runScenario">Open the hourly model</a>
+            <a class="button solid" href="#solution" data-i="viewSolution">See the selected design</a>
             <a class="hero-document" href="./presentation/team-sunkar-catalyst-2026.pdf" data-i="openDeck">Presentation (PDF)</a>
           </div>
         </div>
@@ -45,39 +45,166 @@
           <section class="capture-target" aria-labelledby="target-title">
             <h2 id="target-title" data-i="targetTitle">Project target for methane capture</h2>
             <strong>97–99%</strong>
-            <p data-i="targetBasis">At 98% capture, about 172 t of CH₄ per year on the case baseline.</p>
+            <p data-i="targetBasis">At 98% of the case baseline, the project would capture about 172 t of CH₄ per year. Field measurements are needed to verify capture.</p>
             <a href="./presentation/team-sunkar-catalyst-2026.pdf#page=15" data-i="targetSource">Presentation, slide 15</a>
-          </section>
-          <section class="schedule-preview" aria-labelledby="preview-title">
-            <div class="preview-head"><h2 id="preview-title" data-i="previewTitle">Modeled daily collection by filling schedule</h2><p id="preview-basis">70 Nm³/h · 90% header access</p></div>
-            <div class="preview-options">
-              <button type="button" data-schedule="sequential" data-jump-to-capture aria-pressed="true">
-                <span data-i="seq">Sequential</span><strong id="sequential-share">89.0%</strong>
-              </button>
-              <button type="button" data-schedule="simultaneous" data-jump-to-capture aria-pressed="false">
-                <span data-i="sim">Simultaneous</span><strong id="simultaneous-share">71.2%</strong>
-              </button>
-            </div>
-            <p id="schedule-impact">≈18 percentage points more with sequential filling</p>
           </section>
         </div>
       </div>
       <div class="wrap baseline">
         <div><strong data-i="baselineSize">6 × 5,000</strong><span data-i="baselineTank">m³ per tank</span></div>
-        <div><strong>20</strong><span data-i="baselineRate">kg CH₄/h across the park</span></div>
-        <div><strong data-i="baselineTonnes">175.2</strong><span data-i="baselineYear">t CH₄/year at the case rate</span></div>
-        <div><strong data-i="baselineCo2">4,765</strong><span data-i="baselineClimate">t CO₂e/year baseline</span></div>
+        <div><strong>20</strong><span data-i="baselineRate">kg CH₄/h of site-wide baseline losses</span></div>
+        <div><strong data-i="baselineTonnes">175.2</strong><span data-i="baselineYear">t CH₄/year if the case rate holds year-round</span></div>
+        <div><strong>≈33 / 70</strong><span data-i="baselineFlow">Nm³/h dry gas, average / design peak</span></div>
       </div>
+    </section>
+
+    <section class="wrap section" id="solution" aria-labelledby="process-title">
+      <aside class="process-feature" aria-labelledby="process-title">
+        <div class="process-feature-header">
+          <h2 id="process-title" data-i="selectedTitle">Selected design — compression + cooling</h2>
+          <button type="button" class="button outline-on-dark" id="open-pfd" data-i="viewPfd">Process flow diagram</button>
+        </div>
+        <ol class="process-flow">
+          <li><span class="step-id">01</span><b data-i="processHeader">Vapor header</b><small data-i="processHeaderSub">Six tanks and a flame arrestor</small></li>
+          <li><span class="step-id">02</span><b data-i="processKo">Inlet separator</b><small data-i="processKoSub">Remove liquid carryover</small></li>
+          <li><span class="step-id">03</span><b data-i="processComp">Screw compressor with VFD</b><small data-i="processCompSub">500 kPa abs. discharge</small></li>
+          <li><span class="step-id">04</span><b data-i="processCool">Air cooler + separator</b><small data-i="processCoolSub">Water removal at 480 kPa abs.</small></li>
+          <li><span class="step-id">05</span><b data-i="processFuel">Existing gas engine</b><small data-i="processFuelSub">Pressure letdown to engine fuel specification</small></li>
+        </ol>
+        <p class="process-foot" data-i="processSafety">The project includes pressure and vacuum protection, O₂ monitoring with shutdown, N₂ blanketing and low-flow recycle. Site checks must confirm peak vapor flow, engine spare capacity, fuel quality and condensate handling.</p>
+      </aside>
+      <details class="method source-notes">
+        <summary data-i="basisTitle">Design basis and simulator inputs</summary>
+        <p data-i="basisProcess">The Aspen cases use Peng–Robinson, approximately 102 kPa abs. at the inlet, 500 kPa abs. at discharge and 480 kPa abs. after cooling. Cooler outlet targets are +45 °C in summer and +10 °C in winter.</p>
+        <p data-i="basisFeed">The Aspen feed table follows the wet compositions stored in the cases. The dry composition on slide 5 uses a different C₂–C₄ split, and the percentage basis of the organizer's composition is unspecified. The 23.53 kg/h line on that slide corresponds to 85% by mass. For the Aspen base case, the wet feed is 29.36 kg/h and carries about 20 kg/h of methane.</p>
+        <p data-i="basisEfficiency">The Aspen summary reports 70% adiabatic compressor efficiency. Slide 5 lists 75%. The supplied DWSIM file uses 75% and a +10 °C cooler outlet, giving 2.56 kW shaft power and 2.92 kW thermal duty. The Aspen summer base case uses +45 °C and gives 2.9 kW and 3.1 kW thermal.</p>
+        <div class="source-links">
+          <a href="./presentation/team-sunkar-catalyst-2026.pdf#page=5" data-i="basisSlide">Assumptions, slide 5</a>
+          <a href="./presentation/team-sunkar-catalyst-2026.pdf#page=11" data-i="aspenSlide">Aspen summary, slide 11</a>
+          <a href="./models/dwsim/compression-cooling.dwxmz" download data-i="dwsimModel">DWSIM compression model</a>
+          <a href="./data/feed-basis.csv" download data-i="feedCsv">Aspen feed data (CSV)</a>
+        </div>
+      </details>
+    </section>
+
+    <section class="section process-section" id="technology" aria-labelledby="technology-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 id="technology-title" data-i="technologyTitle">VRU technology comparison</h2>
+            <p class="lede" data-i="technologyLead">Aspen HYSYS V12 comparison for the three operating cases in the presentation.</p>
+          </div>
+          <a class="button outline" href="./workbooks/simulation-results.xlsx" download data-i="downloadExcel">Download Excel ↓</a>
+        </div>
+        <div class="case-bar">
+          <div class="segmented case-buttons" id="case-group" role="group" aria-label="Aspen operating case">
+            <button type="button" data-case="summer-peak" aria-pressed="false" data-i="casePeak">1 · Summer peak</button>
+            <button type="button" data-case="summer-average" aria-pressed="true" data-i="caseAverage">2 · Summer, 20 kg CH₄/h</button>
+            <button type="button" data-case="winter" aria-pressed="false" data-i="caseWinter">3 · Winter</button>
+          </div>
+          <p class="case-feed" id="case-feed" aria-live="polite"></p>
+        </div>
+        <p id="data-status" class="data-status" role="status" data-i="dataLoading">Loading Aspen results…</p>
+        <div class="tech-results" id="tech-results" hidden>
+          <table class="tech-table" aria-labelledby="technology-title">
+            <thead>
+              <tr>
+                <th scope="col" data-i="techColumn">Technology</th>
+                <th scope="col" data-i="shaftColumn">Shaft power</th>
+                <th scope="col" data-i="methaneColumn">Inlet CH₄ to product</th>
+                <th class="tech-optional" scope="col" data-i="coolingColumn">Cooling duty</th>
+                <th class="tech-optional" scope="col" data-i="ventColumn">CH₄ to vent</th>
+              </tr>
+            </thead>
+            <tbody id="tech-grid"></tbody>
+          </table>
+        </div>
+        <p class="results-note" data-i="processBoundary">The denominator for “inlet CH₄ to product” is methane entering the modeled equipment. The reported 99.99% for compression describes this process balance. Cooling duty is thermal, and shaft power sums the machines included in each model.</p>
+        <details class="method source-notes">
+          <summary data-i="comparisonTitle">How to read the comparison</summary>
+          <p data-i="comparisonAbsorption">The Case 2 absorption row scales the summer peak calculation. The vent column for absorption shows CH₄ in the off-gas. A closed solvent-loop balance also needs the residual methane in returning oil and condensate.</p>
+          <p data-i="comparisonSplits">The Aspen VSA and membrane models stipulate 10% methane to vent and 5% to permeate, respectively. The DWSIM adsorption example reports 94.64% in the raffinate under a separate screening model. Recovery from that stream depends on where it is routed.</p>
+          <div class="source-links">
+            <a href="./presentation/team-sunkar-catalyst-2026.pdf#page=10" data-i="adsorptionSlide">DWSIM adsorption, slide 10</a>
+            <a href="./presentation/team-sunkar-catalyst-2026.pdf#page=12" data-i="comparisonSlide">Aspen alternatives, slides 12–14</a>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="wrap section" id="economics" aria-labelledby="economics-title">
+      <div class="section-head">
+        <div>
+          <h2 id="economics-title" data-i="economicsTitle">Payback with an existing gas engine</h2>
+          <p class="lede" data-i="economicsLead">Compare payback with and without methane credits. The calculation assumes an existing gas engine with spare capacity.</p>
+        </div>
+        <a class="button outline" href="./data/economics-deck.csv" download data-i="downloadCost">Download cost basis ↓</a>
+      </div>
+      <div class="econ-layout">
+        <div class="econ-controls">
+          <div class="input-block">
+            <label for="capex" data-i="installedCost">Installed CAPEX, excluding recoverable VAT</label>
+            <div class="range-row"><input id="capex" type="range" min="224500" max="633200" step="100" value="224500" disabled><output id="capex-value" for="capex">$224.5k</output></div>
+            <div class="range-labels"><span id="capex-low">$224.5k</span><span id="capex-high">$633.2k</span></div>
+          </div>
+          <div class="econ-inputs">
+            <div><label for="grid-savings" data-i="gridSavings">Grid electricity displaced, USD/year</label><input id="grid-savings" type="number" inputmode="decimal" min="0" max="500000" step="100" value="88400" disabled></div>
+            <div><label for="running-cost" data-i="annualOpex">Running costs, USD/year</label><input id="running-cost" type="number" inputmode="decimal" min="0" max="500000" step="100" value="31700" disabled></div>
+          </div>
+          <fieldset class="credits-control">
+            <legend data-i="creditOption">Methane credit scenario</legend>
+            <div class="segmented" id="credit-modes">
+              <button type="button" data-credits="true" aria-pressed="true" data-i="withCredits">With credits</button>
+              <button type="button" data-credits="false" aria-pressed="false" data-i="withoutCredits">Without credits</button>
+            </div>
+            <div class="econ-inputs" id="credit-inputs">
+              <div><label for="credit-price" data-i="creditPrice">Credit price, USD/t CO₂e</label><input id="credit-price" type="number" inputmode="decimal" min="0" max="200" step="0.5" value="10" disabled></div>
+              <div><label for="credit-volume" data-i="creditVolume">Assumed credit volume, t CO₂e/year</label><input id="credit-volume" type="number" inputmode="decimal" min="0" max="4765" step="1" value="4670" disabled></div>
+            </div>
+          </fieldset>
+          <p class="small" data-i="costBoundary">The deck assumes 1,090 MWh/year of displaced grid power at 36.49 KZT/kWh and 4,670 t CO₂e/year in the credit scenario. The electricity estimate implies about 124 kW of annual average displaced power. Confirm usable fuel flow and engine operating hours. Credit eligibility depends on the methodology and verified net reductions.</p>
+          <a class="source-link" href="./presentation/team-sunkar-catalyst-2026.pdf#page=18" data-i="costSlide">Economics, slide 18</a>
+          <p id="econ-status" role="status" data-i="dataLoading">Loading data…</p>
+        </div>
+        <div class="econ-results" aria-live="polite">
+          <div><span data-i="netSavings">Net annual savings</span><strong id="net-savings">—</strong><small id="credit-revenue"></small></div>
+          <div><span data-i="payback">Simple payback</span><strong id="payback-value">—</strong><small id="payback-note"></small><small id="payback-range"></small></div>
+          <div class="econ-target"><span data-i="withoutCredits">Without credits</span><strong id="creditless-net">—</strong><small id="creditless-payback"></small></div>
+          <div class="econ-target"><span data-i="requiredSavings">Grid savings needed for 15-year payback</span><strong id="required-savings">—</strong><small data-i="simpleBasis">Running costs + installed CAPEX / 15 years − credit revenue, floored at zero.</small></div>
+        </div>
+      </div>
+      <details class="method source-notes">
+        <summary data-i="climateTitle">Methane and CO₂-equivalent assumptions</summary>
+        <p data-i="climateBasis">The presentation uses GWP₁₀₀ = 27.2. That gives about 4,765 t CO₂e/year at the case baseline of 175.2 t CH₄/year, or about 4,670 t CO₂e/year in gross methane terms at 98% capture. IPCC AR6 WGI Table 7.15 gives 29.8 for fossil methane. The credit calculation needs its own approved accounting method and project emissions.</p>
+        <div class="source-links">
+          <a href="./presentation/team-sunkar-catalyst-2026.pdf#page=2" data-i="climateSlide">Case baseline, slide 2</a>
+          <a href="https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-7/" data-i="ipccSource">IPCC AR6, Table 7.15</a>
+        </div>
+      </details>
     </section>
 
     <section class="wrap section" id="capture" aria-labelledby="capture-title">
       <div class="section-head">
         <div>
-          <h2 id="capture-title" tabindex="-1" data-i="captureTitle">Tank farm collection</h2>
-          <p class="lede" data-i="captureLead">Switch the filling schedule to see when vapors reach the header faster than the VRU can take them.</p>
+          <h2 id="capture-title" tabindex="-1" data-i="captureTitle">Filling schedule sensitivity</h2>
+          <p class="lede" data-i="captureLead">A worked example using assumed filling windows and header access. The project presentation identifies the actual filling schedule as a field data gap.</p>
         </div>
-        <button type="button" class="button outline" id="share" data-i="share">Copy scenario link</button>
       </div>
+      <details class="scenario-details" id="capture-details">
+        <summary data-i="openScenario">Open the illustrative filling calculator</summary>
+          <section class="schedule-preview" aria-labelledby="preview-title">
+            <div class="preview-head"><h2 id="preview-title" data-i="previewTitle">Modeled daily collection by filling schedule</h2><p id="preview-basis">70 Nm³/h · 90% header access</p></div>
+            <div class="preview-options">
+              <button type="button" data-schedule="sequential" aria-pressed="true">
+                <span data-i="seq">Sequential</span><strong id="sequential-share">89.0%</strong>
+              </button>
+              <button type="button" data-schedule="simultaneous" aria-pressed="false">
+                <span data-i="sim">Simultaneous</span><strong id="simultaneous-share">71.2%</strong>
+              </button>
+            </div>
+            <p id="schedule-impact">≈18 percentage points more with sequential filling</p>
+          </section>
+        <div class="scenario-actions"><button type="button" class="button outline" id="share" data-i="share">Copy scenario link</button></div>
       <div class="sim-layout">
         <div class="control-panel">
           <fieldset>
@@ -99,12 +226,12 @@
               <input id="capacity" type="range" min="30" max="200" step="1" value="70">
               <output id="capacity-value" for="capacity">70</output>
             </div>
-            <p class="small" data-i="capacityHint">70 Nm³/h is the dry-gas basis tested in HYSYS.</p>
+            <p class="small" data-i="capacityHint">The default takes 70 Nm³/h from the design-peak feed for illustration.</p>
           </fieldset>
           <div class="input-block">
             <label for="access" data-i="headerAccess">Vapors reaching the header</label>
             <div class="range-row"><input id="access" type="range" min="0" max="100" step="1" value="90"><output id="access-value" for="access">90%</output></div>
-            <p class="small" data-i="accessHint">Assumed share after tank sealing. The rest bypasses collection.</p>
+            <p class="small" data-i="accessHint">At 90% header access, collection can reach at most 90%, even with unlimited VRU capacity.</p>
           </div>
           <details class="assumption-box">
             <summary data-i="annualAssumptions">Annual assumptions</summary>
@@ -156,101 +283,10 @@
       </div>
       <details class="method">
         <summary data-i="captureMethod">Collection model basis</summary>
-        <p data-i="captureMethodText">Both schedules release 320 Nm³ during filling. Sequential filling releases 80 Nm³/h over four hours. Simultaneous filling releases 160 Nm³/h over two hours. The remaining daily vapor volume is distributed across the other hours. We assume 85 mol.% methane on a dry basis and equal daily emissions in both cases.</p>
+        <p data-i="captureMethodText">The example rounds the earlier workbook’s one- and two-tank filling peaks to 80 and 160 Nm³/h. Both schedules release 320 Nm³ during filling and distribute the remaining daily vapor evenly over the other hours. The calculation assumes 85 mol.% CH₄ on a dry basis and equal daily emissions for both schedules.</p>
         <p data-i="captureEquation">Hourly collection = min(vapor generated × header access, VRU capacity). There is no vapor buffer. The model assumes a full day of VRU operation and applies availability and fuel acceptance separately for the annual projection. Normal volumes use 0 °C and 101.325 kPa abs.</p>
       </details>
-    </section>
-
-    <section class="section process-section" id="technology" aria-labelledby="technology-title">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <h2 id="technology-title" data-i="technologyTitle">VRU technology comparison</h2>
-            <p class="lede" data-i="technologyLead">Four configurations under the same inlet conditions for each operating case.</p>
-          </div>
-          <a class="button outline" href="./workbooks/simulation-results.xlsx" download data-i="downloadExcel">Download Excel ↓</a>
-        </div>
-        <div class="case-bar">
-          <div class="segmented case-buttons" id="case-group" role="group" aria-label="Aspen operating case">
-            <button type="button" data-case="summer-average" aria-pressed="true" data-i="caseAverage">Summer average</button>
-            <button type="button" data-case="summer-peak" aria-pressed="false" data-i="casePeak">Summer peak</button>
-            <button type="button" data-case="winter" aria-pressed="false" data-i="caseWinter">Winter</button>
-          </div>
-          <p class="case-feed" id="case-feed" aria-live="polite"></p>
-        </div>
-        <p id="data-status" class="data-status" role="status" data-i="dataLoading">Loading Aspen results…</p>
-        <div class="tech-results" id="tech-results" hidden>
-          <table class="tech-table" aria-labelledby="technology-title">
-            <thead>
-              <tr>
-                <th scope="col" data-i="techColumn">Technology</th>
-                <th scope="col" data-i="shaftColumn">Shaft power</th>
-                <th scope="col" data-i="methaneColumn">CH₄ to product</th>
-                <th class="tech-optional" scope="col" data-i="coolingColumn">Cooling duty</th>
-                <th class="tech-optional" scope="col" data-i="ventColumn">CH₄ to vent</th>
-              </tr>
-            </thead>
-            <tbody id="tech-grid"></tbody>
-          </table>
-        </div>
-        <p class="results-note" data-i="processBoundary">Methane to product is a share of CH₄ already at the VRU inlet. Site-wide collection is modeled above. Cooling duty is thermal. Shaft power sums the modeled machines for each technology.</p>
-        <aside class="process-feature" aria-labelledby="process-title">
-          <div class="process-feature-header">
-            <h3 id="process-title" data-i="selectedTitle">Compression + cooling</h3>
-            <button type="button" class="button outline-on-dark" id="open-pfd" data-i="viewPfd">Process flow diagram</button>
-          </div>
-          <ol class="process-flow">
-            <li><span class="step-id">01</span><b data-i="processHeader">Vapor header</b><small data-i="processHeaderSub">Six connected tanks</small></li>
-            <li><span class="step-id">02</span><b data-i="processKo">Inlet separator</b><small data-i="processKoSub">Remove liquid carryover</small></li>
-            <li><span class="step-id">03</span><b data-i="processComp">Screw compressor</b><small data-i="processCompSub">500 kPa abs. discharge</small></li>
-            <li><span class="step-id">04</span><b data-i="processCool">Air cooler + separator</b><small data-i="processCoolSub">Remove condensed water</small></li>
-            <li><span class="step-id">05</span><b data-i="processFuel">Existing gas engine</b><small data-i="processFuelSub">Displace purchased electricity</small></li>
-          </ol>
-          <p class="process-foot" data-i="processSafety">Field design requires tank pressure and vacuum protection, O₂ monitoring, safe drainage and confirmation of the engine's available capacity, fuel pressure and gas quality.</p>
-        </aside>
-      </div>
-    </section>
-
-    <section class="wrap section" id="economics" aria-labelledby="economics-title">
-      <div class="section-head">
-        <div>
-          <h2 id="economics-title" data-i="economicsTitle">Payback with an existing gas engine</h2>
-          <p class="lede" data-i="economicsLead">Compare payback with and without methane credits. The calculation assumes an existing gas engine with spare capacity.</p>
-        </div>
-        <a class="button outline" href="./data/economics-deck.csv" download data-i="downloadCost">Download cost basis ↓</a>
-      </div>
-      <div class="econ-layout">
-        <div class="econ-controls">
-          <div class="input-block">
-            <label for="capex" data-i="installedCost">Installed CAPEX, excluding recoverable VAT</label>
-            <div class="range-row"><input id="capex" type="range" min="224500" max="633200" step="100" value="224500" disabled><output id="capex-value" for="capex">$224.5k</output></div>
-            <div class="range-labels"><span id="capex-low">$224.5k</span><span id="capex-high">$633.2k</span></div>
-          </div>
-          <div class="econ-inputs">
-            <div><label for="grid-savings" data-i="gridSavings">Grid electricity displaced, USD/year</label><input id="grid-savings" type="number" inputmode="decimal" min="0" max="500000" step="100" value="88400" disabled></div>
-            <div><label for="running-cost" data-i="annualOpex">Running costs, USD/year</label><input id="running-cost" type="number" inputmode="decimal" min="0" max="500000" step="100" value="31700" disabled></div>
-          </div>
-          <fieldset class="credits-control">
-            <legend data-i="creditOption">Methane credit scenario</legend>
-            <div class="segmented" id="credit-modes">
-              <button type="button" data-credits="true" aria-pressed="true" data-i="withCredits">With credits</button>
-              <button type="button" data-credits="false" aria-pressed="false" data-i="withoutCredits">Without credits</button>
-            </div>
-            <div class="econ-inputs" id="credit-inputs">
-              <div><label for="credit-price" data-i="creditPrice">Credit price, USD/t CO₂e</label><input id="credit-price" type="number" inputmode="decimal" min="0" max="200" step="0.5" value="10" disabled></div>
-              <div><label for="credit-volume" data-i="creditVolume">Assumed credit volume, t CO₂e/year</label><input id="credit-volume" type="number" inputmode="decimal" min="0" max="4765" step="1" value="4670" disabled></div>
-            </div>
-          </fieldset>
-          <p class="small" data-i="costBoundary">The deck assumes 1,090 MWh/year of grid power displaced at 36.49 KZT/kWh. The credit basis is a separate target scenario. Credit eligibility and net verified reductions require confirmation.</p>
-          <p id="econ-status" role="status" data-i="dataLoading">Loading data…</p>
-        </div>
-        <div class="econ-results" aria-live="polite">
-          <div><span data-i="netSavings">Net annual savings</span><strong id="net-savings">—</strong><small id="credit-revenue"></small></div>
-          <div><span data-i="payback">Simple payback</span><strong id="payback-value">—</strong><small id="payback-note"></small><small id="payback-range"></small></div>
-          <div class="econ-target"><span data-i="withoutCredits">Without credits</span><strong id="creditless-net">—</strong><small id="creditless-payback"></small></div>
-          <div class="econ-target"><span data-i="requiredSavings">Grid savings needed for 15-year payback</span><strong id="required-savings">—</strong><small data-i="simpleBasis">Running costs + installed CAPEX / 15 years − credit revenue, floored at zero.</small></div>
-        </div>
-      </div>
+      </details>
     </section>
 
     <section class="files-section" id="files" aria-labelledby="files-title">
@@ -262,8 +298,8 @@
         </div>
         <div class="file-grid">
           <a class="file-link" href="./presentation/team-sunkar-catalyst-2026.pdf"><span class="file-type">PDF</span><span><b data-i="filePresentation">Team presentation</b><small data-i="filePresentationSub">Case basis, PFD and cost estimates</small></span><span aria-hidden="true">↗</span></a>
-          <a class="file-link" href="./workbooks/simulation-results.xlsx" download><span class="file-type">XLSX</span><span><b data-i="fileTable">Simulation results</b><small data-i="fileTableSub">12 scenario rows and Aspen evidence</small></span><span aria-hidden="true">↓</span></a>
-          <a class="file-link" href="./workbooks/scenario-assumptions.xlsx" download><span class="file-type">XLSX</span><span><b data-i="fileScenario">Scenario workbook</b><small data-i="fileScenarioSub">Filling, methane balance and economics</small></span><span aria-hidden="true">↓</span></a>
+          <a class="file-link" href="./workbooks/simulation-results.xlsx" download><span class="file-type">XLSX</span><span><b data-i="fileTable">Simulation results</b><small data-i="fileTableSub">12 comparison rows, including one scaled estimate</small></span><span aria-hidden="true">↓</span></a>
+          <a class="file-link" href="./workbooks/scenario-assumptions.xlsx" download><span class="file-type">XLSX</span><span><b data-i="fileScenario">Earlier scenario workbook</b><small data-i="fileScenarioSub">Filling sensitivity and boiler fuel substitution</small></span><span aria-hidden="true">↓</span></a>
           <a class="file-link" href="https://github.com/ganibeks/catalyst-2026-vru/tree/main/models"><span class="file-type">HSC</span><span><b data-i="fileModels">Simulation models</b><small data-i="fileModelsSub">Aspen HYSYS and DWSIM files</small></span><span aria-hidden="true">↗</span></a>
           <a class="file-link" href="./data/simulation-results.csv" download><span class="file-type">CSV</span><span><b data-i="fileData">Dashboard data</b><small data-i="fileDataSub">Technology comparison and source paths</small></span><span aria-hidden="true">↓</span></a>
           <a class="file-link" href="https://github.com/ganibeks/catalyst-2026-vru"><span class="file-type">GIT</span><span><b data-i="fileGit">Public repository</b><small data-i="fileGitSub">Project archive and dashboard code</small></span><span aria-hidden="true">↗</span></a>
@@ -283,6 +319,7 @@
     <img id="evidence-image" alt="" width="1920" height="1080">
     <div class="dialog-actions">
       <a class="button outline" id="evidence-source" target="_blank" rel="noopener" data-i="openImage">Open full image ↗</a>
+      <a class="button outline" id="evidence-slide" data-i="openSourceSlide">Presentation slide</a>
       <a class="button outline" id="evidence-model" download data-i="downloadModel">Download Aspen case ↓</a>
     </div>
   </dialog>

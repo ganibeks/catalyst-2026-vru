@@ -2,7 +2,7 @@ import {
   baseline, collectionProfile, defaults, economics, generatedPerDay, hourlyCsv,
   parseCsv, scenarioUrl, stateFromUrl, technologies,
 } from "./model.mjs";
-import { message, russian } from "./copy.mjs?v=3";
+import { message, russian } from "./copy.mjs?v=4";
 import { chartHour, drawFlowChart } from "./chart.mjs?v=2";
 
 const get = id => document.getElementById(id);
@@ -12,6 +12,7 @@ const translated = [...document.querySelectorAll("[data-i]")].map(node => ({
 }));
 const collectionInputs = ["capacity", "access", "availability", "offtake"];
 const costInputs = ["capex", "grid-savings", "running-cost", "credit-price", "credit-volume"];
+const sourcePages = { "compression-cooling": 11, adsorption: 12, absorption: 13, "hybrid-membrane": 14, pfd: 17 };
 const state = stateFromUrl(location.href);
 const canvas = get("flow-chart");
 let profile;
@@ -148,6 +149,7 @@ function showEvidence(title, src, model, result) {
   image.src = src;
   image.alt = t(title);
   get("evidence-source").href = src;
+  get("evidence-slide").href = "./presentation/team-sunkar-catalyst-2026.pdf#page=" + sourcePages[title];
   const metrics = get("evidence-metrics");
   const basis = get("evidence-basis");
   metrics.hidden = basis.hidden = !result;
@@ -172,7 +174,7 @@ function showEvidence(title, src, model, result) {
 function technologyMetrics(row) {
   return [
     ["shaft", row.shaft_power_kw, t("powerUnit"), 1],
-    ["methaneProduct", row.ch4_to_product_pct, "%", 0],
+    ["methaneProduct", row.ch4_to_product_pct, "%", Number.isInteger(row.ch4_to_product_pct) ? 0 : 2],
     ["cooling", row.cooling_duty_kw_thermal, t("thermal"), 1],
     ["vent", row.ch4_to_vent_kg_h, t("massHour"), 1],
     [row.technology === "absorption" ? "leanOil" : "productMole",
@@ -183,8 +185,7 @@ function technologyMetrics(row) {
 
 function formatMetric([key, value, unit, digits]) {
   if (value === null) return "—";
-  const approximate = key === "methaneProduct" && value > 99.9 ? "≈" : "";
-  return approximate + number(value, digits) + (unit === "%" ? unit : "\u00a0" + unit);
+  return number(value, digits) + (unit === "%" ? unit : "\u00a0" + unit);
 }
 
 function renderTechnologyRow(row) {
@@ -230,10 +231,13 @@ function renderTechnology() {
   }
   const { results, feed } = simulationData;
   const selectedFeed = feed.find(row => row.scenario === state.operatingCase);
+  const dryVolume = selectedFeed.feed_kmol_h * (1 - selectedFeed.water_mol_pct / 100) * baseline.normalMolarVolumeM3PerKmol;
+  const methaneMass = selectedFeed.feed_kmol_h * selectedFeed.ch4_mol_pct / 100 * baseline.methaneMolarMassKgPerKmol;
   set("case-feed", t("feed") + " " + number(selectedFeed.feed_temp_c) + " °C · " +
     number(selectedFeed.feed_pressure_kpa_abs, 1) + " " + t("pressure") + " · " +
     number(selectedFeed.feed_kmol_h, 3) + " " + t("kmolHour") + " · " +
-    number(selectedFeed.water_mol_pct, 2) + " " + t("moisture"));
+    number(selectedFeed.water_mol_pct, 2) + " " + t("moisture") + " · " +
+    "≈" + number(dryVolume) + " " + t("dryRate") + " · " + number(methaneMass, 1) + " " + t("methaneHour"));
   const filtered = technologies.map(technology => results.find(
     row => row.technology === technology && row.scenario === state.operatingCase,
   ));
@@ -294,7 +298,7 @@ async function loadSimulation() {
     const [results, feed] = await Promise.all([
       getCsv("simulation-results", ["shaft_power_kw", "cooling_duty_kw_thermal", "ch4_to_product_pct",
         "ch4_to_vent_kg_h", "lean_oil_t_h", "ch4_in_product_mol_pct"]),
-      getCsv("feed-basis", ["feed_temp_c", "feed_pressure_kpa_abs", "feed_kmol_h", "water_mol_pct"]),
+      getCsv("feed-basis", ["feed_temp_c", "feed_pressure_kpa_abs", "feed_kmol_h", "water_mol_pct", "ch4_mol_pct"]),
     ]);
     for (const caseName of ["summer-average", "summer-peak", "winter"]) {
       if (!feed.some(row => row.scenario === caseName) ||
@@ -353,10 +357,6 @@ for (const button of document.querySelectorAll("[data-schedule]")) {
     state.schedule = button.dataset.schedule;
     selectedHour = baseline.fillingStartHour;
     renderCollection();
-    if (button.hasAttribute("data-jump-to-capture")) {
-      get("capture-title").focus({ preventScroll: true });
-      get("capture").scrollIntoView();
-    }
   });
 }
 for (const button of document.querySelectorAll("[data-capacity]")) {
@@ -429,6 +429,12 @@ canvas.addEventListener("keydown", event => {
   set("announce", get("chart-readout").textContent);
 });
 
+function openSharedCapture() {
+  if (location.hash === "#capture") get("capture-details").open = true;
+}
+
+window.addEventListener("hashchange", openSharedCapture);
+openSharedCapture();
 applyCopy();
 renderCollection();
 renderTechnology();
