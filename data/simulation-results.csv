@@ -1,0 +1,13 @@
+technology,scenario,shaft_power_kw,cooling_duty_kw_thermal,ch4_to_product_pct,ch4_to_vent_kg_h,lean_oil_t_h,ch4_in_product_mol_pct,result_basis,source
+compression-cooling,summer-peak,6.1,6.5,99.99,0,,83.29,steady-state-process,evidence/aspen-hysys/compression-cooling/summer-peak.png
+compression-cooling,summer-average,2.9,3.1,99.99,0,,83.29,steady-state-process,evidence/aspen-hysys/compression-cooling/summer-average.png
+compression-cooling,winter,2.4,2.1,99.99,0,,84.78,steady-state-process,evidence/aspen-hysys/compression-cooling/winter.png
+absorption,summer-peak,22.0,,66,9.7,64,89.60,steady-state-lean-oil,evidence/aspen-hysys/absorption/summer-peak.png
+absorption,summer-average,10.3,,66,4.6,30,,scaled-from-summer-peak,evidence/aspen-hysys/absorption/overview.png
+absorption,winter,9.3,,77,2.0,26,94.04,steady-state-lean-oil,evidence/aspen-hysys/absorption/winter.png
+adsorption,summer-peak,16.0,16.5,90,4.3,,85.33,assumed-component-split,evidence/aspen-hysys/adsorption/summer-peak.png
+adsorption,summer-average,7.5,7.8,90,2.0,,85.33,assumed-component-split,evidence/aspen-hysys/adsorption/summer-average.png
+adsorption,winter,6.4,6.1,90,2.0,,86.86,assumed-component-split,evidence/aspen-hysys/adsorption/winter.png
+hybrid-membrane,summer-peak,6.1,,95,2.1,,87.01,assumed-component-split,evidence/aspen-hysys/hybrid-membrane/summer-peak.png
+hybrid-membrane,summer-average,2.9,,95,1.0,,87.01,assumed-component-split,evidence/aspen-hysys/hybrid-membrane/summer-average.png
+hybrid-membrane,winter,2.4,,95,1.0,,87.35,assumed-component-split,evidence/aspen-hysys/hybrid-membrane/winter.png

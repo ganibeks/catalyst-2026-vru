@@ -1,0 +1,4 @@
+scenario,feed_temp_c,feed_pressure_kpa_abs,feed_kmol_h,ch4_mol_pct,ethane_mol_pct,propane_mol_pct,n_butane_mol_pct,n2_mol_pct,water_mol_pct,co2_mol_pct,cooler_target_c
+summer-peak,30,101.8,3.260,81.46,4.79,2.87,1.92,3.83,4.17,0.96,45
+summer-average,30,101.8,1.534,81.46,4.79,2.87,1.92,3.83,4.17,0.96,45
+winter,-10,101.8,1.470,84.78,4.99,2.99,1.99,3.99,0.26,1.00,10

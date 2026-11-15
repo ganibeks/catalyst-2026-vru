@@ -1,0 +1,9 @@
+*.bk[0-9]
+*.ahc
+~$*
+.env
+.env.*
+.DS_Store
+Thumbs.db
+node_modules/
+__pycache__/

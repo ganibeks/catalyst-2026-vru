@@ -1,0 +1,516 @@
+﻿Property,Value,Units
+Density (Mixture),4.16725,kg/m3
+Molecular Weight (Mixture),19.3064,kg/kmol
+Specific Enthalpy (Mixture),-36.6854,kJ/kg
+Specific Entropy (Mixture),-0.620431,kJ/[kg.K]
+Molar Enthalpy (Mixture),-708.263,kJ/kmol
+Molar Entropy (Mixture),-11.9783,kJ/[kmol.K]
+Thermal Conductivity (Mixture),0.030685,W/[m.K]
+Density (Vapor),4.16725,kg/m3
+Molecular Weight (Vapor),19.3064,kg/kmol
+Specific Enthalpy (Vapor),-36.6854,kJ/kg
+Specific Entropy (Vapor),-0.620431,kJ/[kg.K]
+Molar Enthalpy (Vapor),-708.263,kJ/kmol
+Molar Entropy (Vapor),-11.9783,kJ/[kmol.K]
+Thermal Conductivity (Vapor),0.030685,W/[m.K]
+Kinematic Viscosity (Vapor),2.642E-06,m2/s
+Dynamic Viscosity (Vapor),1.10099E-05,Pa.s
+Heat Capacity (Vapor),2.03315,kJ/[kg.K]
+Heat Capacity Ratio (Vapor),1.3016,
+Mass Flow (Vapor),0.00786526,kg/s
+Molar Flow (Vapor),0.407391,mol/s
+Volumetric Flow (Vapor),0.0018874,m3/s
+Compressibility Factor (Vapor),0.984,
+Molar Fraction (Vapor),1,
+Mass Fraction (Vapor),1,
+Volumetric Fraction (Vapor),1,
+Density (Overall Liquid),0,kg/m3
+Molecular Weight (Overall Liquid),,kg/kmol
+Specific Enthalpy (Overall Liquid),0,kJ/kg
+Specific Entropy (Overall Liquid),0,kJ/[kg.K]
+Molar Enthalpy (Overall Liquid),,kJ/kmol
+Molar Entropy (Overall Liquid),,kJ/[kmol.K]
+Thermal Conductivity (Overall Liquid),0,W/[m.K]
+Kinematic Viscosity (Overall Liquid),0,m2/s
+Dynamic Viscosity (Overall Liquid),0,Pa.s
+Heat Capacity (Overall Liquid),0,kJ/[kg.K]
+Heat Capacity Ratio (Overall Liquid),,
+Mass Flow (Overall Liquid),0,kg/s
+Molar Flow (Overall Liquid),0,mol/s
+Volumetric Flow (Overall Liquid),0,m3/s
+Compressibility Factor (Overall Liquid),0,
+Molar Fraction (Overall Liquid),0,
+Mass Fraction (Overall Liquid),0,
+Volumetric Fraction (Overall Liquid),0,
+Density (Liquid 1),0,kg/m3
+Molar Weight (Liquid 1),0,kg/kmol
+Specific Enthalpy (Liquid 1),0,kJ/kg
+Specific Entropy (Liquid 1),0,kJ/[kg.K]
+Molar Enthalpy (Liquid 1),0,kJ/kmol
+Molar Entropy (Liquid 1),0,kJ/[kmol.K]
+Thermal Conductivity (Liquid 1),0,W/[m.K]
+Kinematic Viscosity (Liquid 1),0,m2/s
+Dynamic Viscosity (Liquid 1),0,Pa.s
+Heat Capacity (Liquid 1),0,kJ/[kg.K]
+Heat Capacity Ratio (Liquid 1),,
+Mass Flow (Liquid 1),0,kg/s
+Molar Flow (Liquid 1),0,mol/s
+Volumetric Flow (Liquid 1),0,m3/s
+Compressibility Factor (Liquid 1),0,
+Molar Fraction (Liquid 1),0,
+Mass Fraction (Liquid 1),0,
+Volumetric Fraction (Liquid 1),0,
+Density (Liquid 2),0,kg/m3
+Molar Weight (Liquid 2),0,kg/kmol
+Specific Enthalpy (Liquid 2),0,kJ/kg
+Specific Entropy (Liquid 2),0,kJ/[kg.K]
+Molar Enthalpy (Liquid 2),0,kJ/kmol
+Molar Entropy (Liquid 2),0,kJ/[kmol.K]
+Thermal Conductivity (Liquid 2),0,W/[m.K]
+Kinematic Viscosity (Liquid 2),0,m2/s
+Dynamic Viscosity (Liquid 2),0,Pa.s
+Heat Capacity (Liquid 2),0,kJ/[kg.K]
+Heat Capacity Ratio (Liquid 2),,
+Mass Flow (Liquid 2),0,kg/s
+Molar Flow (Liquid 2),0,mol/s
+Volumetric Flow (Liquid 2),0,m3/s
+Compressibility Factor (Liquid 2),0,
+Molar Fraction (Liquid 2),0,
+Mass Fraction (Liquid 2),0,
+Volumetric Fraction (Liquid 2),0,
+Density (Aqueous),0,kg/m3
+Molecular Weight (Aqueous),0,kg/kmol
+Specific Enthalpy (Aqueous),0,kJ/kg
+Specific Entropy (Aqueous),0,kJ/[kg.K]
+Molar Enthalpy (Aqueous),0,kJ/kmol
+Molar Entropy (Aqueous),0,kJ/[kmol.K]
+Thermal Conductivity (Aqueous),0,W/[m.K]
+Kinematic Viscosity (Aqueous),0,m2/s
+Dynamic Viscosity (Aqueous),0,Pa.s
+Heat Capacity (Aqueous),0,kJ/[kg.K]
+Heat Capacity Ratio (Aqueous),,
+Mass Flow (Aqueous),0,kg/s
+Molar Flow (Aqueous),0,mol/s
+Volumetric Flow (Aqueous),0,m3/s
+Compressibility Factor (Aqueous),0,
+Molar Fraction (Aqueous),0,
+Aqueous Mass Fraction,0,
+Aqueous Volumetric Fraction,0,
+Density (Solid),0,kg/m3
+Molecular Weight (Solid),0,kg/kmol
+Specific Enthalpy (Solid),0,kJ/kg
+Specific Entropy (Solid),0,kJ/[kg.K]
+Molar Enthalpy (Solid),0,kJ/kmol
+Molar Entropy (Solid),0,kJ/[kmol.K]
+Thermal Conductivity (Solid),0,W/[m.K]
+Kinematic Viscosity (Solid),0,m2/s
+Dynamic Viscosity (Solid),0,Pa.s
+Solid Heat Capacity (Cp),0,kJ/[kg.K]
+Solid Heat Capacity Ratio (Cp/Cv),,
+Mass Flow (Solid),0,kg/s
+Molar Flow (Solid),0,mol/s
+Volumetric Flow (Solid),0,m3/s
+Compressibility Factor (Solid),0,
+Molar Fraction (Solid),0,
+Mass Fraction (Solid),0,
+Volumetric Fraction (Solid),0,
+Molar Fraction (Mixture) / Methane,0.850037,
+Molar Fraction (Mixture) / Ethane,0.0399982,
+Molar Fraction (Mixture) / Propane,0.0299896,
+Molar Fraction (Mixture) / N-butane,0.0299559,
+Molar Fraction (Mixture) / Nitrogen,0.0500028,
+Molar Fraction (Mixture) / N-dodecane,1.61447E-05,
+Mass Fraction (Mixture) / Methane,0.70633,
+Mass Fraction (Mixture) / Ethane,0.0622957,
+Mass Fraction (Mixture) / Propane,0.068496,
+Mass Fraction (Mixture) / N-butane,0.0901827,
+Mass Fraction (Mixture) / Nitrogen,0.0725535,
+Mass Fraction (Mixture) / N-dodecane,0.00014244,
+Molar Flow (Mixture) / Methane,0.346298,mol/s
+Molar Flow (Mixture) / Ethane,0.0162949,mol/s
+Molar Flow (Mixture) / Propane,0.0122175,mol/s
+Molar Flow (Mixture) / N-butane,0.0122038,mol/s
+Molar Flow (Mixture) / Nitrogen,0.0203707,mol/s
+Molar Flow (Mixture) / N-dodecane,6.57719E-06,mol/s
+Mass Flow (Mixture) / Methane,0.00555547,kg/s
+Mass Flow (Mixture) / Ethane,0.000489972,kg/s
+Mass Flow (Mixture) / Propane,0.000538739,kg/s
+Mass Flow (Mixture) / N-butane,0.00070931,kg/s
+Mass Flow (Mixture) / Nitrogen,0.000570652,kg/s
+Mass Flow (Mixture) / N-dodecane,1.12032E-06,kg/s
+Molar Fraction (Vapor) / Methane,0.850037,
+Molar Fraction (Vapor) / Ethane,0.0399982,
+Molar Fraction (Vapor) / Propane,0.0299896,
+Molar Fraction (Vapor) / N-butane,0.0299559,
+Molar Fraction (Vapor) / Nitrogen,0.0500028,
+Molar Fraction (Vapor) / N-dodecane,1.61447E-05,
+Molar Fraction (Overall Liquid) / Methane,,
+Molar Fraction (Overall Liquid) / Ethane,,
+Molar Fraction (Overall Liquid) / Propane,,
+Molar Fraction (Overall Liquid) / N-butane,,
+Molar Fraction (Overall Liquid) / Nitrogen,,
+Molar Fraction (Overall Liquid) / N-dodecane,,
+Molar Fraction (Liquid 1) / Methane,0,
+Molar Fraction (Liquid 1) / Ethane,0,
+Molar Fraction (Liquid 1) / Propane,0,
+Molar Fraction (Liquid 1) / N-butane,0,
+Molar Fraction (Liquid 1) / Nitrogen,0,
+Molar Fraction (Liquid 1) / N-dodecane,0,
+Molar Fraction (Liquid 2) / Methane,0,
+Molar Fraction (Liquid 2) / Ethane,0,
+Molar Fraction (Liquid 2) / Propane,0,
+Molar Fraction (Liquid 2) / N-butane,0,
+Molar Fraction (Liquid 2) / Nitrogen,0,
+Molar Fraction (Liquid 2) / N-dodecane,0,
+Molar Fraction (Aqueous) / Methane,0,
+Molar Fraction (Aqueous) / Ethane,0,
+Molar Fraction (Aqueous) / Propane,0,
+Molar Fraction (Aqueous) / N-butane,0,
+Molar Fraction (Aqueous) / Nitrogen,0,
+Molar Fraction (Aqueous) / N-dodecane,0,
+Mass Fraction (Vapor) / Methane,0.70633,
+Mass Fraction (Vapor) / Ethane,0.0622957,
+Mass Fraction (Vapor) / Propane,0.068496,
+Mass Fraction (Vapor) / N-butane,0.0901827,
+Mass Fraction (Vapor) / Nitrogen,0.0725535,
+Mass Fraction (Vapor) / N-dodecane,0.00014244,
+Mass Fraction (Overall Liquid) / Methane,,
+Mass Fraction (Overall Liquid) / Ethane,,
+Mass Fraction (Overall Liquid) / Propane,,
+Mass Fraction (Overall Liquid) / N-butane,,
+Mass Fraction (Overall Liquid) / Nitrogen,,
+Mass Fraction (Overall Liquid) / N-dodecane,,
+Mass Fraction (Liquid 1) / Methane,0,
+Mass Fraction (Liquid 1) / Ethane,0,
+Mass Fraction (Liquid 1) / Propane,0,
+Mass Fraction (Liquid 1) / N-butane,0,
+Mass Fraction (Liquid 1) / Nitrogen,0,
+Mass Fraction (Liquid 1) / N-dodecane,0,
+Mass Fraction (Liquid 2) / Methane,0,
+Mass Fraction (Liquid 2) / Ethane,0,
+Mass Fraction (Liquid 2) / Propane,0,
+Mass Fraction (Liquid 2) / N-butane,0,
+Mass Fraction (Liquid 2) / Nitrogen,0,
+Mass Fraction (Liquid 2) / N-dodecane,0,
+Mass Fraction (Aqueous) / Methane,0,
+Mass Fraction (Aqueous) / Ethane,0,
+Mass Fraction (Aqueous) / Propane,0,
+Mass Fraction (Aqueous) / N-butane,0,
+Mass Fraction (Aqueous) / Nitrogen,0,
+Mass Fraction (Aqueous) / N-dodecane,0,
+Molar Flow (Vapor) / Methane,0.346298,mol/s
+Molar Flow (Vapor) / Ethane,0.0162949,mol/s
+Molar Flow (Vapor) / Propane,0.0122175,mol/s
+Molar Flow (Vapor) / N-butane,0.0122038,mol/s
+Molar Flow (Vapor) / Nitrogen,0.0203707,mol/s
+Molar Flow (Vapor) / N-dodecane,6.57719E-06,mol/s
+Molar Flow (Overall Liquid) / Methane,,mol/s
+Molar Flow (Overall Liquid) / Ethane,,mol/s
+Molar Flow (Overall Liquid) / Propane,,mol/s
+Molar Flow (Overall Liquid) / N-butane,,mol/s
+Molar Flow (Overall Liquid) / Nitrogen,,mol/s
+Molar Flow (Overall Liquid) / N-dodecane,,mol/s
+Molar Flow (Liquid 1) / Methane,0,mol/s
+Molar Flow (Liquid 1) / Ethane,0,mol/s
+Molar Flow (Liquid 1) / Propane,0,mol/s
+Molar Flow (Liquid 1) / N-butane,0,mol/s
+Molar Flow (Liquid 1) / Nitrogen,0,mol/s
+Molar Flow (Liquid 1) / N-dodecane,0,mol/s
+Molar Flow (Liquid 2) / Methane,0,mol/s
+Molar Flow (Liquid 2) / Ethane,0,mol/s
+Molar Flow (Liquid 2) / Propane,0,mol/s
+Molar Flow (Liquid 2) / N-butane,0,mol/s
+Molar Flow (Liquid 2) / Nitrogen,0,mol/s
+Molar Flow (Liquid 2) / N-dodecane,0,mol/s
+Molar Flow (Aqueous) / Methane,,mol/s
+Molar Flow (Aqueous) / Ethane,,mol/s
+Molar Flow (Aqueous) / Propane,,mol/s
+Molar Flow (Aqueous) / N-butane,,mol/s
+Molar Flow (Aqueous) / Nitrogen,,mol/s
+Molar Flow (Aqueous) / N-dodecane,,mol/s
+Mass Flow (Vapor) / Methane,0.00555547,kg/s
+Mass Flow (Vapor) / Ethane,0.000489972,kg/s
+Mass Flow (Vapor) / Propane,0.000538739,kg/s
+Mass Flow (Vapor) / N-butane,0.00070931,kg/s
+Mass Flow (Vapor) / Nitrogen,0.000570652,kg/s
+Mass Flow (Vapor) / N-dodecane,1.12032E-06,kg/s
+Mass Flow (Overall Liquid) / Methane,,kg/s
+Mass Flow (Overall Liquid) / Ethane,,kg/s
+Mass Flow (Overall Liquid) / Propane,,kg/s
+Mass Flow (Overall Liquid) / N-butane,,kg/s
+Mass Flow (Overall Liquid) / Nitrogen,,kg/s
+Mass Flow (Overall Liquid) / N-dodecane,,kg/s
+Mass Flow (Liquid 1) / Methane,0,kg/s
+Mass Flow (Liquid 1) / Ethane,0,kg/s
+Mass Flow (Liquid 1) / Propane,0,kg/s
+Mass Flow (Liquid 1) / N-butane,0,kg/s
+Mass Flow (Liquid 1) / Nitrogen,0,kg/s
+Mass Flow (Liquid 1) / N-dodecane,0,kg/s
+Mass Flow (Liquid 2) / Methane,0,kg/s
+Mass Flow (Liquid 2) / Ethane,0,kg/s
+Mass Flow (Liquid 2) / Propane,0,kg/s
+Mass Flow (Liquid 2) / N-butane,0,kg/s
+Mass Flow (Liquid 2) / Nitrogen,0,kg/s
+Mass Flow (Liquid 2) / N-dodecane,0,kg/s
+Mass Flow (Aqueous) / Methane,0,kg/s
+Mass Flow (Aqueous) / Ethane,0,kg/s
+Mass Flow (Aqueous) / Propane,0,kg/s
+Mass Flow (Aqueous) / N-butane,0,kg/s
+Mass Flow (Aqueous) / Nitrogen,0,kg/s
+Mass Flow (Aqueous) / N-dodecane,0,kg/s
+Mole Fraction (Solid) / Methane,0,
+Mole Fraction (Solid) / Ethane,0,
+Mole Fraction (Solid) / Propane,0,
+Mole Fraction (Solid) / N-butane,0,
+Mole Fraction (Solid) / Nitrogen,0,
+Mole Fraction (Solid) / N-dodecane,0,
+Mass Fraction (Solid) / Methane,0,
+Mass Fraction (Solid) / Ethane,0,
+Mass Fraction (Solid) / Propane,0,
+Mass Fraction (Solid) / N-butane,0,
+Mass Fraction (Solid) / Nitrogen,0,
+Mass Fraction (Solid) / N-dodecane,0,
+Mole Flow (Solid) / Methane,0,mol/s
+Mole Flow (Solid) / Ethane,0,mol/s
+Mole Flow (Solid) / Propane,0,mol/s
+Mole Flow (Solid) / N-butane,0,mol/s
+Mole Flow (Solid) / Nitrogen,0,mol/s
+Mole Flow (Solid) / N-dodecane,0,mol/s
+Mass Flow (Solid) / Methane,0,kg/s
+Mass Flow (Solid) / Ethane,0,kg/s
+Mass Flow (Solid) / Propane,0,kg/s
+Mass Flow (Solid) / N-butane,0,kg/s
+Mass Flow (Solid) / Nitrogen,0,kg/s
+Mass Flow (Solid) / N-dodecane,0,kg/s
+Bubble Pressure at Stream Temperature,0,Pa
+Dew Pressure at Stream Temperature,0,Pa
+Bubble Temperature at Stream Pressure,0,K
+Dew Temperature at Stream Pressure,0,K
+Phases,V,
+pH (Liquid 1),0,
+Osmotic Coefficient (Liquid 1),0,
+Mean Ionic Activity Coefficient (Liquid 1),0,
+Freezing Point (Liquid 1),0,K
+Freezing Point Depression (Liquid 1),0,K.
+Isothermal Compressibility (Vapor),2.03433E-06,1/Pa
+Bulk Modulus (Vapor),491563,Pa
+Speed of Sound (Vapor),391.835,m/s
+Joule-Thomson Coefficient (Vapor),6.36253E-06,K/Pa
+Internal Energy (Vapor),-156.669,kJ/kg
+Gibbs Free Energy (Vapor),138.99,kJ/kg
+Helmholtz Free Energy (Vapor),19.0066,kJ/kg
+Isothermal Compressibility (Overall Liquid),0,1/Pa
+Bulk Modulus (Overall Liquid),0,Pa
+Speed of Sound (Overall Liquid),0,m/s
+Joule-Thomson Coefficient (Overall Liquid),0,K/Pa
+Internal Energy (Overall Liquid),0,kJ/kg
+Gibbs Free Energy (Overall Liquid),0,kJ/kg
+Helmholtz Free Energy (Overall Liquid),0,kJ/kg
+Bulk Modulus (Liquid 1),0,Pa
+Speed of Sound (Liquid 1),0,m/s
+Joule-Thomson Coefficient (Liquid 1),0,K/Pa
+Internal Energy (Liquid 1),0,kJ/kg
+Gibbs Free Energy (Liquid 1),0,kJ/kg
+Helmholtz Free Energy (Liquid 1),0,kJ/kg
+Isothermal Compressibility (Liquid 1),0,1/Pa
+Bulk Modulus (Liquid 2),0,Pa
+Speed of Sound (Liquid 2),0,m/s
+Joule-Thomson Coefficient (Liquid 2),0,K/Pa
+Internal Energy (Liquid 2),0,kJ/kg
+Gibbs Free Energy (Liquid 2),0,kJ/kg
+Helmholtz Free Energy (Liquid 2),0,kJ/kg
+Isothermal Compressibility (Liquid 2),0,1/Pa
+Bulk Modulus (Liquid 3),0,Pa
+Speed of Sound (Liquid 3),0,m/s
+Joule-Thomson Coefficient (Liquid 3),0,K/Pa
+Internal Energy (Liquid 3),0,kJ/kg
+Gibbs Free Energy (Liquid 3),0,kJ/kg
+Helmholtz Free Energy (Liquid 3),0,kJ/kg
+Isothermal Compressibility (Liquid 3),0,1/Pa
+Bulk Modulus (Aqueous),0,Pa
+Speed of Sound (Aqueous),0,m/s
+Joule-Thomson Coefficient (Aqueous),0,K/Pa
+Internal Energy (Aqueous),0,kJ/kg
+Gibbs Free Energy (Aqueous),0,kJ/kg
+Helmholtz Free Energy (Aqueous),0,kJ/kg
+Isothermal Compressibility (Aqueous),0,1/Pa
+Bulk Modulus (Solid),0,Pa
+Speed of Sound (Solid),0,m/s
+Joule-Thomson Coefficient (Solid),0,K/Pa
+Internal Energy (Solid),0,kJ/kg
+Gibbs Free Energy (Solid),0,kJ/kg
+Helmholtz Free Energy (Solid),0,kJ/kg
+Isothermal Compressibility (Solid),0,1/Pa
+Internal Energy (Mixture),-156.669,kJ/kg
+Gibbs Free Energy (Mixture),138.99,kJ/kg
+Helmholtz Free Energy (Mixture),19.0066,kJ/kg
+Molar Internal Energy (Mixture),-3024.71,kJ/kmol
+Molar Gibbs Free Energy (Mixture),2683.39,kJ/kmol
+Molar Helmholtz Free Energy (Mixture),366.95,kJ/kmol
+Molar Internal Energy (Vapor),-3024.71,kJ/kmol
+Molar Gibbs Free Energy (Vapor),2683.39,kJ/kmol
+Molar Helmholtz Free Energy (Vapor),366.95,kJ/kmol
+Molar Internal Energy (Overall Liquid),,kJ/kmol
+Molar Gibbs Free Energy (Overall Liquid),,kJ/kmol
+Molar Helmholtz Free Energy (Overall Liquid),,kJ/kmol
+Molar Internal Energy (Liquid 1),0,kJ/kmol
+Molar Gibbs Free Energy (Liquid 1),0,kJ/kmol
+Molar Helmholtz Free Energy (Liquid 1),0,kJ/kmol
+Molar Internal Energy (Liquid 2),0,kJ/kmol
+Molar Gibbs Free Energy (Liquid 2),0,kJ/kmol
+Molar Helmholtz Free Energy (Liquid 2),0,kJ/kmol
+Molar Internal Energy (Liquid 3),0,kJ/kmol
+Molar Gibbs Free Energy (Liquid 3),0,kJ/kmol
+Molar Helmholtz Free Energy (Liquid 3),0,kJ/kmol
+Molar Internal Energy (Aqueous Phase),0,kJ/kmol
+Molar Gibbs Free Energy (Aqueous Phase),0,kJ/kmol
+Molar Helmholtz Free Energy (Aqueous Phase),0,kJ/kmol
+Molar Internal Energy (Solid),0,kJ/kmol
+Molar Gibbs Free Energy (Solid),0,kJ/kmol
+Molar Helmholtz Free Energy (Solid),0,kJ/kmol
+Molality (Mixture) / Methane,0,mol/Kg Water
+Molality (Mixture) / Ethane,0,mol/Kg Water
+Molality (Mixture) / Propane,0,mol/Kg Water
+Molality (Mixture) / N-butane,0,mol/Kg Water
+Molality (Mixture) / Nitrogen,0,mol/Kg Water
+Molality (Mixture) / N-dodecane,0,mol/Kg Water
+Molality (Vapor Phase) / Methane,0,mol/Kg Water
+Molality (Vapor Phase) / Ethane,0,mol/Kg Water
+Molality (Vapor Phase) / Propane,0,mol/Kg Water
+Molality (Vapor Phase) / N-butane,0,mol/Kg Water
+Molality (Vapor Phase) / Nitrogen,0,mol/Kg Water
+Molality (Vapor Phase) / N-dodecane,0,mol/Kg Water
+Molality (Overall Liquid) / Methane,0,mol/Kg Water
+Molality (Overall Liquid) / Ethane,0,mol/Kg Water
+Molality (Overall Liquid) / Propane,0,mol/Kg Water
+Molality (Overall Liquid) / N-butane,0,mol/Kg Water
+Molality (Overall Liquid) / Nitrogen,0,mol/Kg Water
+Molality (Overall Liquid) / N-dodecane,0,mol/Kg Water
+Molality (Liquid Phase 1) / Methane,0,mol/Kg Water
+Molality (Liquid Phase 1) / Ethane,0,mol/Kg Water
+Molality (Liquid Phase 1) / Propane,0,mol/Kg Water
+Molality (Liquid Phase 1) / N-butane,0,mol/Kg Water
+Molality (Liquid Phase 1) / Nitrogen,0,mol/Kg Water
+Molality (Liquid Phase 1) / N-dodecane,0,mol/Kg Water
+Molality (Liquid Phase 2) / Methane,0,mol/Kg Water
+Molality (Liquid Phase 2) / Ethane,0,mol/Kg Water
+Molality (Liquid Phase 2) / Propane,0,mol/Kg Water
+Molality (Liquid Phase 2) / N-butane,0,mol/Kg Water
+Molality (Liquid Phase 2) / Nitrogen,0,mol/Kg Water
+Molality (Liquid Phase 2) / N-dodecane,0,mol/Kg Water
+Molality (Solid Phase) / Methane,0,mol/Kg Water
+Molality (Solid Phase) / Ethane,0,mol/Kg Water
+Molality (Solid Phase) / Propane,0,mol/Kg Water
+Molality (Solid Phase) / N-butane,0,mol/Kg Water
+Molality (Solid Phase) / Nitrogen,0,mol/Kg Water
+Molality (Solid Phase) / N-dodecane,0,mol/Kg Water
+Molarity (Mixture) / Methane,183.479,mol/m3
+Molarity (Mixture) / Ethane,8.63353,mol/m3
+Molarity (Mixture) / Propane,6.47321,mol/m3
+Molarity (Mixture) / N-butane,6.46593,mol/m3
+Molarity (Mixture) / Nitrogen,10.793,mol/m3
+Molarity (Mixture) / N-dodecane,0.00348479,mol/m3
+Molarity (Vapor Phase) / Methane,183.479,mol/m3
+Molarity (Vapor Phase) / Ethane,8.63353,mol/m3
+Molarity (Vapor Phase) / Propane,6.47321,mol/m3
+Molarity (Vapor Phase) / N-butane,6.46593,mol/m3
+Molarity (Vapor Phase) / Nitrogen,10.793,mol/m3
+Molarity (Vapor Phase) / N-dodecane,0.00348479,mol/m3
+Molarity (Overall Liquid) / Methane,0,mol/m3
+Molarity (Overall Liquid) / Ethane,0,mol/m3
+Molarity (Overall Liquid) / Propane,0,mol/m3
+Molarity (Overall Liquid) / N-butane,0,mol/m3
+Molarity (Overall Liquid) / Nitrogen,0,mol/m3
+Molarity (Overall Liquid) / N-dodecane,0,mol/m3
+Molarity (Liquid Phase 1) / Methane,0,mol/m3
+Molarity (Liquid Phase 1) / Ethane,0,mol/m3
+Molarity (Liquid Phase 1) / Propane,0,mol/m3
+Molarity (Liquid Phase 1) / N-butane,0,mol/m3
+Molarity (Liquid Phase 1) / Nitrogen,0,mol/m3
+Molarity (Liquid Phase 1) / N-dodecane,0,mol/m3
+Molarity (Liquid Phase 2) / Methane,0,mol/m3
+Molarity (Liquid Phase 2) / Ethane,0,mol/m3
+Molarity (Liquid Phase 2) / Propane,0,mol/m3
+Molarity (Liquid Phase 2) / N-butane,0,mol/m3
+Molarity (Liquid Phase 2) / Nitrogen,0,mol/m3
+Molarity (Liquid Phase 2) / N-dodecane,0,mol/m3
+Molarity (Aqueous Phase) / Methane,0,mol/m3
+Molarity (Aqueous Phase) / Ethane,0,mol/m3
+Molarity (Aqueous Phase) / Propane,0,mol/m3
+Molarity (Aqueous Phase) / N-butane,0,mol/m3
+Molarity (Aqueous Phase) / Nitrogen,0,mol/m3
+Molarity (Aqueous Phase) / N-dodecane,0,mol/m3
+Molarity (Solid Phase) / Methane,0,mol/m3
+Molarity (Solid Phase) / Ethane,0,mol/m3
+Molarity (Solid Phase) / Propane,0,mol/m3
+Molarity (Solid Phase) / N-butane,0,mol/m3
+Molarity (Solid Phase) / Nitrogen,0,mol/m3
+Molarity (Solid Phase) / N-dodecane,0,mol/m3
+Energy Flow,-30.2764,kW
+Activity Coefficient, Liquid Phase 1 / Methane,0,
+Activity Coefficient, Liquid Phase 1 / Ethane,0,
+Activity Coefficient, Liquid Phase 1 / Propane,0,
+Activity Coefficient, Liquid Phase 1 / N-butane,0,
+Activity Coefficient, Liquid Phase 1 / Nitrogen,0,
+Activity Coefficient, Liquid Phase 1 / N-dodecane,0,
+Activity Coefficient, Liquid Phase 2 / Methane,0,
+Activity Coefficient, Liquid Phase 2 / Ethane,0,
+Activity Coefficient, Liquid Phase 2 / Propane,0,
+Activity Coefficient, Liquid Phase 2 / N-butane,0,
+Activity Coefficient, Liquid Phase 2 / Nitrogen,0,
+Activity Coefficient, Liquid Phase 2 / N-dodecane,0,
+Fugacity Coefficient, Vapor Phase / Methane,0.987245,Pa
+Fugacity Coefficient, Vapor Phase / Ethane,0.959667,Pa
+Fugacity Coefficient, Vapor Phase / Propane,0.938468,Pa
+Fugacity Coefficient, Vapor Phase / N-butane,0.917963,Pa
+Fugacity Coefficient, Vapor Phase / Nitrogen,1.00174,Pa
+Fugacity Coefficient, Vapor Phase / N-dodecane,0.754826,Pa
+Fugacity Coefficient, Liquid Phase 1 / Methane,0,Pa
+Fugacity Coefficient, Liquid Phase 1 / Ethane,0,Pa
+Fugacity Coefficient, Liquid Phase 1 / Propane,0,Pa
+Fugacity Coefficient, Liquid Phase 1 / N-butane,0,Pa
+Fugacity Coefficient, Liquid Phase 1 / Nitrogen,0,Pa
+Fugacity Coefficient, Liquid Phase 1 / N-dodecane,0,Pa
+Fugacity Coefficient, Liquid Phase 2 / Methane,0,Pa
+Fugacity Coefficient, Liquid Phase 2 / Ethane,0,Pa
+Fugacity Coefficient, Liquid Phase 2 / Propane,0,Pa
+Fugacity Coefficient, Liquid Phase 2 / N-butane,0,Pa
+Fugacity Coefficient, Liquid Phase 2 / Nitrogen,0,Pa
+Fugacity Coefficient, Liquid Phase 2 / N-dodecane,0,Pa
+Diffusion Coefficient, Vapor Phase / Methane,1.71525E-11,m2/s
+Diffusion Coefficient, Vapor Phase / Ethane,8.41633E-12,m2/s
+Diffusion Coefficient, Vapor Phase / Propane,5.42656E-12,m2/s
+Diffusion Coefficient, Vapor Phase / N-butane,3.94781E-12,m2/s
+Diffusion Coefficient, Vapor Phase / Nitrogen,1.59249E-11,m2/s
+Diffusion Coefficient, Vapor Phase / N-dodecane,1.13571E-12,m2/s
+Diffusion Coefficient, Liquid Phase 1 / Methane,,m2/s
+Diffusion Coefficient, Liquid Phase 1 / Ethane,,m2/s
+Diffusion Coefficient, Liquid Phase 1 / Propane,,m2/s
+Diffusion Coefficient, Liquid Phase 1 / N-butane,,m2/s
+Diffusion Coefficient, Liquid Phase 1 / Nitrogen,,m2/s
+Diffusion Coefficient, Liquid Phase 1 / N-dodecane,,m2/s
+Diffusion Coefficient, Liquid Phase 2 / Methane,,m2/s
+Diffusion Coefficient, Liquid Phase 2 / Ethane,,m2/s
+Diffusion Coefficient, Liquid Phase 2 / Propane,,m2/s
+Diffusion Coefficient, Liquid Phase 2 / N-butane,,m2/s
+Diffusion Coefficient, Liquid Phase 2 / Nitrogen,,m2/s
+Diffusion Coefficient, Liquid Phase 2 / N-dodecane,,m2/s
+Ideal Gas Heat Capacity Cp (Vapor),1.9988,kJ/kg
+Ideal Gas Heat Capacity Cp (Liquid 1),0,kJ/kg
+Ideal Gas Heat Capacity Cp (Liquid 2),0,kJ/kg
+Ideal Gas Heat Capacity Cp (Overall Liquid),0,kJ/kg
+Ideal Gas Heat Capacity Cp (Solid),0,kJ/kg
+Ideal Gas Heat Capacity Ratio (Vapor),1.27461,
+Ideal Gas Heat Capacity Ratio (Liquid 1),0,
+Ideal Gas Heat Capacity Ratio (Liquid 2),0,
+Ideal Gas Heat Capacity Ratio (Overall Liquid),0,
+Ideal Gas Heat Capacity Ratio (Solid),0,
+CO2 Loading,0,
+CO2 Partial Pressure,0,Pa
+H2S Loading,0,
+H2S Partial Pressure,0,Pa
+Volumetric Fraction (Vapor),1,
+Volumetric Fraction (Overall Liquid),0,
+Volumetric Fraction (Liquid 1),0,
+Volumetric Fraction (Liquid 2),0,
+Volumetric Fraction (Solid),0,

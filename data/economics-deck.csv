@@ -1,0 +1,8 @@
+metric,value_low,value_high,unit,source_page
+installed_capital_ex_vat,224500,633200,USD,18
+cash_funding_including_vat_provision,260400,734500,USD,18
+annual_fuel_savings,15500,15500,USD/year,18
+annual_running_costs,15300,15300,USD/year,18
+annual_net_savings,200,200,USD/year,18
+analysis_horizon,15,15,year,16
+avoided_purchased_gas_equivalent,166000,166000,m3/year as reported,18

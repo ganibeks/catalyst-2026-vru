@@ -1,0 +1,4 @@
+scenario,feed_kg_h,compressor_discharge_temp_c,compressor_discharge_pressure_kpa_abs,outlet_pressure_kpa_abs,fuel_gas_kg_h,inlet_liquid_kg_h,outlet_liquid_kg_h,shaft_energy_kj_h,cooler_energy_kj_h
+summer-peak,62.39,186.6,500,480,61.10,0.02897,1.261,21990,23350
+summer-average,29.36,186.6,500,480,28.75,0.01363,0.5936,10350,10990
+winter,28.20,134.8,500,480,28.20,0,0.001215,8670,7695
