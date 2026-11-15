@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#122725">
+  <meta name="description" content="Team Sunkar's Catalyst 2026 dashboard for a six-tank oil farm. Explore methane collection, Aspen HYSYS scenarios and project economics.">
+  <title>Team Sunkar | Catalyst 2026 VRU</title>
+  <link rel="stylesheet" href="./dashboard/styles.css">
+  <script type="module" src="./dashboard/app.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main" data-i="skip">Skip to content</a>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <a class="brand" href="#main" aria-label="Team Sunkar, home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>Team Sunkar<span class="brand-small">CATALYST 2026</span></span>
+      </a>
+      <nav class="nav" aria-label="Dashboard sections">
+        <a href="#capture" data-i="navCapture">Collection</a>
+        <a href="#technology" data-i="navTechnology">Technology</a>
+        <a href="#economics" data-i="navEconomics">Economics</a>
+        <a href="#files" data-i="navFiles">Files</a>
+      </nav>
+      <div class="masthead-actions">
+        <button type="button" class="language" id="language" aria-label="Switch to Russian">RU</button>
+        <a class="git-link" href="https://github.com/ganibeks/catalyst-2026-vru">GitHub ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i="heroEyebrow">KMG ENGINEERING · CASE 02</p>
+          <h1 id="hero-title"><span data-i="heroLineOne">Vapor recovery</span><span class="hero-accent" data-i="heroLineTwo">for six oil tanks</span></h1>
+          <p class="hero-summary" data-i="heroSummary">Collect methane-rich vapors, compress and cool them, then fuel an existing on-site gas engine to displace purchased electricity.</p>
+          <div class="hero-actions">
+            <a class="button solid" href="#capture"><span data-i="runScenario">Explore collection</span> <span aria-hidden="true">↓</span></a>
+            <a class="button outline-on-dark" href="./presentation/team-sunkar-catalyst-2026.pdf" data-i="openDeck">Open presentation ↗</a>
+          </div>
+        </div>
+        <figure class="hero-figure">
+          <img src="./dashboard/assets/tank-farm.webp" alt="Aerial photograph of above-ground crude oil storage tanks" width="1400" height="1120" fetchpriority="high">
+          <figcaption><span data-i="illustrative">Illustrative site photo</span> <a href="https://commons.wikimedia.org/wiki/File:United_States_Strategic_Petroleum_Reserve_012.jpg">U.S. DOE ↗</a></figcaption>
+        </figure>
+      </div>
+      <div class="wrap baseline">
+        <div><strong>6 × 5,000</strong><span data-i="baselineTank">m³ of tank capacity</span></div>
+        <div><strong>20</strong><span data-i="baselineRate">kg CH₄/h across the park</span></div>
+        <div><strong>175.2</strong><span data-i="baselineYear">t CH₄/year at the case rate</span></div>
+        <div><strong>4,765</strong><span data-i="baselineClimate">t CO₂e/year baseline</span></div>
+      </div>
+    </section>
+
+    <section class="wrap section" id="capture" aria-labelledby="capture-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-i="captureEyebrow">TANK FARM · 24-HOUR MODEL</p>
+          <h2 id="capture-title" data-i="captureTitle">How much methane gets collected?</h2>
+          <p class="lede" data-i="captureLead">Switch the filling schedule to see what happens when vapors reach the collection header faster than the VRU can take them.</p>
+        </div>
+        <button type="button" class="button outline" id="share" data-i="share">Copy scenario link</button>
+      </div>
+      <div class="sim-layout">
+        <div class="control-panel">
+          <fieldset>
+            <legend data-i="fillSchedule">Filling schedule</legend>
+            <div class="segmented vertical" id="schedule-group">
+              <button type="button" data-schedule="sequential" aria-pressed="true"><span data-i="seq">Sequential</span><small data-i="seqSub">One tank at a time</small></button>
+              <button type="button" data-schedule="simultaneous" aria-pressed="false"><span data-i="sim">Simultaneous</span><small data-i="simSub">Two tanks together</small></button>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend data-i="capacityLabel">VRU inlet capacity, Nm³/h</legend>
+            <div class="segmented" id="capacity-presets">
+              <button type="button" data-capacity="70" aria-pressed="true">70</button>
+              <button type="button" data-capacity="80" aria-pressed="false">80</button>
+              <button type="button" data-capacity="160" aria-pressed="false">160</button>
+            </div>
+            <div class="range-row">
+              <label for="capacity" class="sr-only" data-i="capacitySlider">Custom VRU capacity</label>
+              <input id="capacity" type="range" min="30" max="200" step="1" value="70">
+              <output id="capacity-value" for="capacity">70</output>
+            </div>
+            <p class="small" data-i="capacityHint">70 Nm³/h is the dry-gas basis tested in HYSYS.</p>
+          </fieldset>
+          <div class="input-block">
+            <label for="access" data-i="headerAccess">Vapors reaching the header</label>
+            <div class="range-row"><input id="access" type="range" min="0" max="100" step="1" value="90"><output id="access-value" for="access">90%</output></div>
+            <p class="small" data-i="accessHint">Assumed share after tank sealing. The rest bypasses collection.</p>
+          </div>
+          <details class="assumption-box">
+            <summary data-i="annualAssumptions">Annual assumptions</summary>
+            <div class="input-block">
+              <label for="availability" data-i="availability">VRU availability</label>
+              <div class="range-row"><input id="availability" type="range" min="0" max="100" step="1" value="95"><output id="availability-value" for="availability">95%</output></div>
+            </div>
+            <div class="input-block">
+              <label for="offtake" data-i="offtake">Fuel gas accepted by site</label>
+              <div class="range-row"><input id="offtake" type="range" min="0" max="100" step="1" value="85"><output id="offtake-value" for="offtake">85%</output></div>
+            </div>
+          </details>
+          <button type="button" class="link-button reset" id="reset" data-i="reset">Reset assumptions</button>
+        </div>
+        <article class="chart-panel" aria-labelledby="chart-title">
+          <div class="chart-head">
+            <div>
+              <h3 id="chart-title" data-i="chartTitle">Vapor flow over 24 hours</h3>
+              <p class="chart-unit" data-i="chartUnit">Dry vapor · Nm³/h</p>
+            </div>
+            <p class="chart-mode" id="chart-mode" aria-live="polite">Sequential filling</p>
+          </div>
+          <div class="chart-legend">
+            <span><i class="key captured"></i><span data-i="keyCollected">Collected</span></span>
+            <span><i class="key uncollected"></i><span data-i="keyUncollected">Uncollected</span></span>
+            <span><i class="key capacity"></i><span data-i="keyCapacity">VRU limit</span></span>
+          </div>
+          <div class="canvas-frame">
+            <canvas id="flow-chart" tabindex="0" role="img" aria-label="Hourly vapor flow. Use arrow keys to change the selected hour." aria-describedby="chart-readout"></canvas>
+          </div>
+          <div id="chart-readout" class="chart-readout"><span id="chart-hour">08:00–09:00</span><span id="chart-gross"></span><span id="chart-collected"></span><span id="chart-uncaptured"></span></div>
+          <div class="chart-actions">
+            <button type="button" class="link-button" id="download-profile" data-i="downloadProfile">Download hourly CSV ↓</button>
+            <button type="button" class="link-button" id="hourly-toggle" aria-expanded="false" aria-controls="hourly-data" data-i="hourlyTable">View hourly data</button>
+          </div>
+          <div class="scroll-table" id="hourly-data" hidden>
+            <table>
+              <thead><tr><th scope="col" data-i="hour">Hour</th><th scope="col" data-i="generated">Generated</th><th scope="col" data-i="collected">Collected</th><th scope="col" data-i="bypass">Bypass</th><th scope="col" data-i="overflow">Overflow</th></tr></thead>
+              <tbody id="hourly-rows"></tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+      <div class="capture-stats" aria-live="polite">
+        <div class="stat stat-highlight"><span data-i="collectedShare">Daily CH₄ collection</span><strong id="captured-share">89.0%</strong><small id="captured-detail"></small></div>
+        <div class="stat"><span data-i="uncollectedMethane">Uncollected methane</span><strong id="uncaptured-day"></strong><small id="uncaptured-detail"></small></div>
+        <div class="stat"><span data-i="annualUtilized">Annual CH₄ to site fuel</span><strong id="annual-utilized"></strong><small data-i="annualBasis">Repeats the selected day with the annual assumptions above.</small></div>
+        <div class="stat"><span data-i="grossAnnual">Gross annual CH₄ benefit</span><strong id="annual-co2"></strong><small data-i="grossAnnualSub">CH₄ used × 27.2, before combustion CO₂ and energy use.</small></div>
+      </div>
+      <div class="comparison-strip">
+        <span data-i="sameSetup">Same VRU and header assumptions</span>
+        <span><span data-i="seq">Sequential</span> <strong id="sequential-share"></strong></span>
+        <span><span data-i="sim">Simultaneous</span> <strong id="simultaneous-share"></strong></span>
+        <span id="schedule-impact"></span>
+      </div>
+      <details class="method">
+        <summary data-i="captureMethod">Collection model basis</summary>
+        <p data-i="captureMethodText">Both schedules release 320 Nm³ during filling. Sequential filling releases 80 Nm³/h over four hours. Simultaneous filling releases 160 Nm³/h over two hours. The remaining daily vapor volume is distributed across the other hours. We assume 85 mol.% methane on a dry basis and equal daily emissions in both cases.</p>
+        <p data-i="captureEquation">Hourly collection = min(vapor generated × header access, VRU capacity). There is no vapor buffer. The model assumes a full day of VRU operation and applies availability and fuel acceptance separately for the annual projection. Normal volumes use 0 °C and 101.325 kPa abs.</p>
+      </details>
+    </section>
+
+    <section class="section process-section" id="technology" aria-labelledby="technology-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-i="processEyebrow">ASPEN HYSYS V12 · PROCESS MODELS</p>
+            <h2 id="technology-title" data-i="technologyTitle">Four ways to treat the same vapor</h2>
+            <p class="lede" data-i="technologyLead">Compare the equipment loads and methane routed to product for each operating case.</p>
+          </div>
+          <a class="button outline" href="./workbooks/simulation-results.xlsx" download data-i="downloadExcel">Download Excel ↓</a>
+        </div>
+        <div class="case-bar">
+          <div class="segmented case-buttons" id="case-group" role="group" aria-label="Aspen operating case">
+            <button type="button" data-case="summer-average" aria-pressed="true" data-i="caseAverage">Summer average</button>
+            <button type="button" data-case="summer-peak" aria-pressed="false" data-i="casePeak">Summer peak</button>
+            <button type="button" data-case="winter" aria-pressed="false" data-i="caseWinter">Winter</button>
+          </div>
+          <p class="case-feed" id="case-feed" aria-live="polite"></p>
+        </div>
+        <p id="data-status" class="data-status" role="status" data-i="dataLoading">Loading Aspen results…</p>
+        <div class="tech-grid" id="tech-grid" aria-label="Technology comparison"></div>
+        <p class="results-note" data-i="processBoundary">Methane to product is a share of CH₄ already at the VRU inlet. Site-wide collection is modeled above. Cooling duty is thermal. Shaft power sums the modeled machines for each technology.</p>
+        <aside class="process-feature" aria-labelledby="process-title">
+          <div class="process-feature-header">
+            <div><p class="eyebrow" data-i="selectedProcess">SELECTED CONFIGURATION</p><h3 id="process-title" data-i="selectedTitle">Compression + cooling</h3></div>
+            <button type="button" class="button outline-on-dark" id="open-pfd" data-i="viewPfd">View team PFD ↗</button>
+          </div>
+          <ol class="process-flow">
+            <li><span class="step-id">01</span><b data-i="processHeader">Vapor header</b><small data-i="processHeaderSub">Six connected tanks</small></li>
+            <li><span class="step-id">02</span><b data-i="processKo">Inlet separator</b><small data-i="processKoSub">Remove liquid carryover</small></li>
+            <li><span class="step-id">03</span><b data-i="processComp">Screw compressor</b><small data-i="processCompSub">500 kPa abs. discharge</small></li>
+            <li><span class="step-id">04</span><b data-i="processCool">Air cooler + separator</b><small data-i="processCoolSub">Remove condensed water</small></li>
+            <li><span class="step-id">05</span><b data-i="processFuel">Existing gas engine</b><small data-i="processFuelSub">Displace purchased electricity</small></li>
+          </ol>
+          <p class="process-foot" data-i="processSafety">Field design requires tank pressure and vacuum protection, O₂ monitoring, safe drainage and confirmation of the engine's available capacity, fuel pressure and gas quality.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wrap section" id="economics" aria-labelledby="economics-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-i="economicsEyebrow">EXISTING ON-SITE GAS ENGINE</p>
+          <h2 id="economics-title" data-i="economicsTitle">What would it take to pay back?</h2>
+          <p class="lede" data-i="economicsLead">Compare payback with and without methane credits. The team assumes an existing gas engine with spare capacity.</p>
+        </div>
+        <a class="button outline" href="./data/economics-deck.csv" download data-i="downloadCost">Download cost basis ↓</a>
+      </div>
+      <div class="econ-layout">
+        <div class="econ-controls">
+          <div class="input-block">
+            <label for="capex" data-i="installedCost">Installed CAPEX, excluding recoverable VAT</label>
+            <div class="range-row"><input id="capex" type="range" min="224500" max="633200" step="100" value="224500" disabled><output id="capex-value" for="capex">$224.5k</output></div>
+            <div class="range-labels"><span id="capex-low">$224.5k</span><span id="capex-high">$633.2k</span></div>
+          </div>
+          <div class="econ-inputs">
+            <div><label for="grid-savings" data-i="gridSavings">Grid electricity displaced, USD/year</label><input id="grid-savings" type="number" inputmode="decimal" min="0" max="500000" step="100" value="88400" disabled></div>
+            <div><label for="running-cost" data-i="annualOpex">Running costs, USD/year</label><input id="running-cost" type="number" inputmode="decimal" min="0" max="500000" step="100" value="31700" disabled></div>
+          </div>
+          <fieldset class="credits-control">
+            <legend data-i="creditOption">Methane credit scenario</legend>
+            <div class="segmented" id="credit-modes">
+              <button type="button" data-credits="true" aria-pressed="true" data-i="withCredits">With credits</button>
+              <button type="button" data-credits="false" aria-pressed="false" data-i="withoutCredits">Without credits</button>
+            </div>
+            <div class="econ-inputs" id="credit-inputs">
+              <div><label for="credit-price" data-i="creditPrice">Credit price, USD/t CO₂e</label><input id="credit-price" type="number" inputmode="decimal" min="0" max="200" step="0.5" value="10" disabled></div>
+              <div><label for="credit-volume" data-i="creditVolume">Assumed credit volume, t CO₂e/year</label><input id="credit-volume" type="number" inputmode="decimal" min="0" max="4765" step="1" value="4670" disabled></div>
+            </div>
+          </fieldset>
+          <p class="small" data-i="costBoundary">The deck assumes 1,090 MWh/year of grid power displaced at 36.49 KZT/kWh. The credit basis is a separate target scenario. Credit eligibility and net verified reductions require confirmation.</p>
+          <p id="econ-status" role="status" data-i="dataLoading">Loading data…</p>
+        </div>
+        <div class="econ-results" aria-live="polite">
+          <div><span data-i="netSavings">Net annual savings</span><strong id="net-savings">—</strong><small id="credit-revenue"></small></div>
+          <div><span data-i="payback">Simple payback</span><strong id="payback-value">—</strong><small id="payback-note"></small><small id="payback-range"></small></div>
+          <div class="econ-target"><span data-i="withoutCredits">Without credits</span><strong id="creditless-net">—</strong><small id="creditless-payback"></small></div>
+          <div class="econ-target"><span data-i="requiredSavings">Grid savings needed for 15-year payback</span><strong id="required-savings">—</strong><small data-i="simpleBasis">Running costs + installed CAPEX / 15 years − credit revenue, floored at zero.</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="files-section" id="files" aria-labelledby="files-title">
+      <div class="wrap section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-i="filesEyebrow">TEAM SUNKAR · PROJECT FILES</p>
+            <h2 id="files-title" data-i="filesTitle">Models, data and presentation</h2>
+          </div>
+        </div>
+        <div class="file-grid">
+          <a class="file-link" href="./presentation/team-sunkar-catalyst-2026.pdf"><span class="file-type">PDF</span><span><b data-i="filePresentation">Team presentation</b><small data-i="filePresentationSub">Case basis, PFD and cost estimates</small></span><span aria-hidden="true">↗</span></a>
+          <a class="file-link" href="./workbooks/simulation-results.xlsx" download><span class="file-type">XLSX</span><span><b data-i="fileTable">Simulation results</b><small data-i="fileTableSub">12 scenario rows and Aspen evidence</small></span><span aria-hidden="true">↓</span></a>
+          <a class="file-link" href="./workbooks/scenario-assumptions.xlsx" download><span class="file-type">XLSX</span><span><b data-i="fileScenario">Scenario workbook</b><small data-i="fileScenarioSub">Filling, methane balance and economics</small></span><span aria-hidden="true">↓</span></a>
+          <a class="file-link" href="https://github.com/ganibeks/catalyst-2026-vru/tree/main/models"><span class="file-type">HSC</span><span><b data-i="fileModels">Simulation models</b><small data-i="fileModelsSub">Aspen HYSYS and DWSIM files</small></span><span aria-hidden="true">↗</span></a>
+          <a class="file-link" href="./data/simulation-results.csv" download><span class="file-type">CSV</span><span><b data-i="fileData">Dashboard data</b><small data-i="fileDataSub">Technology comparison and source paths</small></span><span aria-hidden="true">↓</span></a>
+          <a class="file-link" href="https://github.com/ganibeks/catalyst-2026-vru"><span class="file-type">GIT</span><span><b data-i="fileGit">Public repository</b><small data-i="fileGitSub">Project archive and dashboard code</small></span><span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner"><span>Team Sunkar · Catalyst 2026</span><span data-i="footerScope">Engineering case study based on case data and modeled scenarios.</span><a href="#main" data-i="backTop">Back to top ↑</a></div>
+  </footer>
+
+  <dialog id="evidence-dialog" aria-labelledby="evidence-title">
+    <div class="dialog-head"><h2 id="evidence-title"></h2><form method="dialog"><button class="button outline" type="submit" data-i="close">Close</button></form></div>
+    <img id="evidence-image" alt="" width="1920" height="1080">
+    <div class="dialog-actions">
+      <a class="button outline" id="evidence-source" target="_blank" rel="noopener" data-i="openImage">Open full image ↗</a>
+      <a class="button outline" id="evidence-model" download data-i="downloadModel">Download Aspen case ↓</a>
+    </div>
+  </dialog>
+  <dialog id="share-dialog" aria-labelledby="share-title">
+    <div class="dialog-head"><h2 id="share-title" data-i="share">Copy scenario link</h2><form method="dialog"><button class="button outline" type="submit" data-i="close">Close</button></form></div>
+    <label for="share-url" data-i="shareHint">Copy this link to open the current scenario.</label>
+    <input id="share-url" type="url" readonly>
+  </dialog>
+  <div id="announce" class="sr-only" role="status"></div>
+</body>
+</html>
