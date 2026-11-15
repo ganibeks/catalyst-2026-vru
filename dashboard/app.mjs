@@ -2,8 +2,8 @@ import {
   baseline, collectionProfile, defaults, economics, generatedPerDay, hourlyCsv,
   parseCsv, scenarioUrl, stateFromUrl, technologies,
 } from "./model.mjs";
-import { message, russian } from "./copy.mjs";
-import { chartHour, drawFlowChart } from "./chart.mjs";
+import { message, russian } from "./copy.mjs?v=2";
+import { chartHour, drawFlowChart } from "./chart.mjs?v=2";
 
 const get = id => document.getElementById(id);
 const set = (id, value) => { get(id).textContent = value; };
@@ -15,6 +15,7 @@ const costInputs = ["capex", "grid-savings", "running-cost", "credit-price", "cr
 const state = stateFromUrl(location.href);
 const canvas = get("flow-chart");
 let profile;
+let chartMaximum;
 let selectedHour = baseline.fillingStartHour;
 let simulationData;
 let costBasis;
@@ -55,7 +56,7 @@ const hourRange = hour => time(hour) + "–" + time(hour + 1);
 const percent = share => number(share * 100, 1) + "%";
 
 function renderGraph() {
-  drawFlowChart(canvas, profile.hourly, state.capacity, selectedHour, number);
+  drawFlowChart(canvas, profile.hourly, state.capacity, selectedHour, number, chartMaximum);
   const row = profile.hourly[selectedHour];
   set("chart-hour", hourRange(row.hour));
   set("chart-gross", t("generated") + " " + number(row.generated, 1));
@@ -92,6 +93,8 @@ function renderCollection() {
   profile = collectionProfile(state);
   const sequential = collectionProfile({ ...state, schedule: "sequential" });
   const simultaneous = collectionProfile({ ...state, schedule: "simultaneous" });
+  chartMaximum = Math.max(state.capacity, ...sequential.hourly.map(row => row.generated),
+    ...simultaneous.hourly.map(row => row.generated));
   const gain = Math.max(0, (sequential.collectedShare - simultaneous.collectedShare) * 100);
   pressed("[data-schedule]", "schedule", state.schedule);
   pressed("[data-capacity]", "capacity", state.capacity);
@@ -110,7 +113,12 @@ function renderCollection() {
   set("annual-co2", number(profile.annualGrossCo2eT) + " " + t("co2Year"));
   set("sequential-share", percent(sequential.collectedShare));
   set("simultaneous-share", percent(simultaneous.collectedShare));
-  set("schedule-impact", "+" + number(gain, 1) + " " + t("pointGain"));
+  for (const [schedule, result] of Object.entries({ sequential, simultaneous })) {
+    get(schedule + "-share").parentElement.style.setProperty("--share", (100 * result.collectedShare) + "%");
+  }
+  set("preview-basis", number(state.capacity) + " " + t("rateUnit") + " · " + number(state.access) + "% " + t("accessShort"));
+  set("schedule-impact", gain === 0 ? t("sameCapture") :
+    "≈" + number(gain, gain < 1 ? 1 : 0) + " " + t("pointGain"));
   renderGraph();
   renderHourly();
 }
@@ -133,61 +141,85 @@ function downloadProfile() {
   set("announce", t("downloadReady"));
 }
 
-function showEvidence(title, src, model) {
+function showEvidence(title, src, model, result) {
   currentEvidence = title;
   set("evidence-title", t(title));
   const image = get("evidence-image");
   image.src = src;
   image.alt = t(title);
   get("evidence-source").href = src;
+  const metrics = get("evidence-metrics");
+  const basis = get("evidence-basis");
+  metrics.hidden = basis.hidden = !result;
+  if (result) {
+    basis.textContent = t(result.result_basis);
+    metrics.replaceChildren(...technologyMetrics(result).map(metric => {
+      const pair = document.createElement("div");
+      const label = document.createElement("dt");
+      const value = document.createElement("dd");
+      label.textContent = t(metric[0]);
+      value.textContent = formatMetric(metric);
+      pair.append(label, value);
+      return pair;
+    }));
+  }
   const modelLink = get("evidence-model");
   modelLink.hidden = model === null;
   if (model) modelLink.href = model;
   get("evidence-dialog").showModal();
 }
 
-function renderTechnologyCard(row) {
-  const card = document.createElement("article");
-  card.className = "tech-card" + (row.technology === "compression-cooling" ? " selected" : "");
-  const title = document.createElement("h3");
-  title.textContent = t(row.technology);
-  const basis = document.createElement("p");
-  basis.className = "case-basis";
-  basis.textContent = t(row.result_basis);
-  const dl = document.createElement("dl");
-
-  const metrics = [
-    ["shaft", row.shaft_power_kw, " kW", 1],
-    ["cooling", row.cooling_duty_kw_thermal, " " + t("thermal"), 1],
+function technologyMetrics(row) {
+  return [
+    ["shaft", row.shaft_power_kw, t("powerUnit"), 1],
     ["methaneProduct", row.ch4_to_product_pct, "%", 0],
-    ["vent", row.ch4_to_vent_kg_h, " kg/h", 1],
+    ["cooling", row.cooling_duty_kw_thermal, t("thermal"), 1],
+    ["vent", row.ch4_to_vent_kg_h, t("massHour"), 1],
     [row.technology === "absorption" ? "leanOil" : "productMole",
       row.technology === "absorption" ? row.lean_oil_t_h : row.ch4_in_product_mol_pct,
-      row.technology === "absorption" ? " " + t("tonneHour") : "%", 1],
+      row.technology === "absorption" ? t("tonneHour") : "%", 1],
   ];
-  for (const [key, value, unit, digits] of metrics) {
-    const metric = document.createElement("div");
-    const label = document.createElement("dt");
-    label.textContent = t(key);
-    const display = document.createElement("dd");
-    if (key === "methaneProduct") display.className = "emphasis";
-    display.textContent = value === null ? "—" :
-      (key === "methaneProduct" && value > 99.9 ? "≈" : "") + number(value, digits) + unit;
-    metric.append(label, display);
-    dl.append(metric);
-  }
+}
+
+function formatMetric([key, value, unit, digits]) {
+  if (value === null) return "—";
+  const approximate = key === "methaneProduct" && value > 99.9 ? "≈" : "";
+  return approximate + number(value, digits) + (unit === "%" ? unit : "\u00a0" + unit);
+}
+
+function renderTechnologyRow(row) {
+  const tr = document.createElement("tr");
+  tr.className = "tech-row";
+  tr.classList.toggle("selected", row.technology === "compression-cooling");
+  const heading = document.createElement("th");
+  heading.scope = "row";
+  const title = document.createElement("span");
+  title.className = "tech-name";
+  title.textContent = t(row.technology);
+  const basis = document.createElement("small");
+  basis.className = "case-basis";
+  basis.textContent = t(row.result_basis);
 
   const open = document.createElement("button");
   open.type = "button";
   open.className = "link-button";
   open.textContent = t("evidence");
+  open.setAttribute("aria-label", t("evidence") + " · " + t(row.technology));
   open.addEventListener("click", () => {
     const model = row.result_basis === "scaled-from-summer-peak" ? null :
       "./models/aspen-hysys/" + row.technology + "/" + row.scenario + ".hsc";
-    showEvidence(row.technology, "./" + row.source, model);
+    showEvidence(row.technology, "./" + row.source, model, row);
   });
-  card.append(title, basis, dl, open);
-  return card;
+  heading.append(title, basis, open);
+  tr.append(heading);
+  for (const metric of technologyMetrics(row).slice(0, 4)) {
+    const cell = document.createElement("td");
+    if (metric[0] === "methaneProduct") cell.className = "emphasis";
+    if (metric[0] === "cooling" || metric[0] === "vent") cell.className = "tech-optional";
+    cell.textContent = formatMetric(metric);
+    tr.append(cell);
+  }
+  return tr;
 }
 
 function renderTechnology() {
@@ -205,7 +237,8 @@ function renderTechnology() {
   const filtered = technologies.map(technology => results.find(
     row => row.technology === technology && row.scenario === state.operatingCase,
   ));
-  get("tech-grid").replaceChildren(...filtered.map(renderTechnologyCard));
+  get("tech-grid").replaceChildren(...filtered.map(renderTechnologyRow));
+  get("tech-results").hidden = false;
   get("data-status").hidden = true;
 }
 
@@ -320,6 +353,10 @@ for (const button of document.querySelectorAll("[data-schedule]")) {
     state.schedule = button.dataset.schedule;
     selectedHour = baseline.fillingStartHour;
     renderCollection();
+    if (button.hasAttribute("data-jump-to-capture")) {
+      get("capture-title").focus({ preventScroll: true });
+      get("capture").scrollIntoView();
+    }
   });
 }
 for (const button of document.querySelectorAll("[data-capacity]")) {

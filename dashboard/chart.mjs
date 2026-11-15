@@ -1,6 +1,6 @@
 const edge = { top: 14, right: 14, bottom: 30, left: 40 };
 
-export function drawFlowChart(canvas, hourly, capacity, selectedHour, format) {
+export function drawFlowChart(canvas, hourly, capacity, selectedHour, format, maximum) {
   const { width, height } = canvas.getBoundingClientRect();
   if (width <= edge.left + edge.right || height <= edge.top + edge.bottom) return;
   const density = Math.min(window.devicePixelRatio || 1, 3);
@@ -11,7 +11,6 @@ export function drawFlowChart(canvas, hourly, capacity, selectedHour, format) {
   ctx.scale(density, density);
   const plotWidth = width - edge.left - edge.right;
   const plotHeight = height - edge.top - edge.bottom;
-  const maximum = Math.max(capacity, ...hourly.map(row => row.generated));
   const interval = maximum > 150 ? 50 : 25;
   const ceiling = Math.ceil(maximum / interval) * interval;
   const x = hour => edge.left + plotWidth * hour / 24;
@@ -23,23 +22,23 @@ export function drawFlowChart(canvas, hourly, capacity, selectedHour, format) {
   ctx.textAlign = "right";
   ctx.textBaseline = "middle";
   for (let tick = 0; tick <= ceiling; tick += interval) {
-    ctx.strokeStyle = "#3a534a";
+    ctx.strokeStyle = "#395463";
     ctx.beginPath();
     ctx.moveTo(x(0), y(tick));
     ctx.lineTo(x(24), y(tick));
     ctx.stroke();
-    ctx.fillStyle = "#b6c9be";
+    ctx.fillStyle = "#bfcfd6";
     ctx.fillText(format(tick), x(0) - 7, y(tick));
   }
 
-  ctx.fillStyle = "#66877b40";
+  ctx.fillStyle = "#88b0bd38";
   ctx.fillRect(x(selectedHour), edge.top, barWidth, plotHeight);
 
   for (const row of hourly) {
     const left = x(row.hour) + barGap / 2;
-    ctx.fillStyle = row.hour === selectedHour ? "#ecfcb5" : "#bddf80";
+    ctx.fillStyle = row.hour === selectedHour ? "#caefed" : "#8accce";
     ctx.fillRect(left, y(row.collected), barWidth - barGap, y(0) - y(row.collected));
-    ctx.fillStyle = "#de956e";
+    ctx.fillStyle = "#e3a27c";
     ctx.fillRect(left, y(row.generated), barWidth - barGap, y(row.collected) - y(row.generated));
   }
 
@@ -52,7 +51,7 @@ export function drawFlowChart(canvas, hourly, capacity, selectedHour, format) {
   ctx.stroke();
   ctx.setLineDash([]);
 
-  ctx.fillStyle = "#b6c9be";
+  ctx.fillStyle = "#bfcfd6";
   ctx.textBaseline = "top";
   const spacing = width < 400 ? 6 : 4;
   for (let tick = 0; tick <= 24; tick += spacing) {

@@ -3,19 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#122725">
+  <meta name="theme-color" content="#f0f4f4">
   <meta name="description" content="Team Sunkar's Catalyst 2026 dashboard for a six-tank oil farm. Explore methane collection, Aspen HYSYS scenarios and project economics.">
   <title>Team Sunkar | Catalyst 2026 VRU</title>
-  <link rel="stylesheet" href="./dashboard/styles.css">
-  <script type="module" src="./dashboard/app.mjs"></script>
+  <link rel="stylesheet" href="./dashboard/styles.css?v=2">
+  <script type="module" src="./dashboard/app.mjs?v=2"></script>
 </head>
 <body>
   <a class="skip" href="#main" data-i="skip">Skip to content</a>
   <header class="masthead">
     <div class="wrap masthead-inner">
       <a class="brand" href="#main" aria-label="Team Sunkar, home">
-        <span class="brand-mark" aria-hidden="true">S</span>
-        <span>Team Sunkar<span class="brand-small">CATALYST 2026</span></span>
+        <span>Team Sunkar<span class="brand-small">Catalyst 2026</span></span>
       </a>
       <nav class="nav" aria-label="Dashboard sections">
         <a href="#capture" data-i="navCapture">Collection</a>
@@ -34,33 +33,46 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow" data-i="heroEyebrow">KMG ENGINEERING · CASE 02</p>
-          <h1 id="hero-title"><span data-i="heroLineOne">Vapor recovery</span><span class="hero-accent" data-i="heroLineTwo">for six oil tanks</span></h1>
-          <p class="hero-summary" data-i="heroSummary">Collect methane-rich vapors, compress and cool them, then fuel an existing on-site gas engine to displace purchased electricity.</p>
+          <p class="case-label" data-i="heroEyebrow">KMG Engineering, case 02</p>
+          <h1 id="hero-title" data-i="heroTitle">Vapor recovery for six oil tanks</h1>
+          <p class="hero-summary" data-i="heroSummary">The proposed VRU compresses and cools captured vapors. The gas fuels an existing engine and displaces grid electricity.</p>
           <div class="hero-actions">
-            <a class="button solid" href="#capture"><span data-i="runScenario">Explore collection</span> <span aria-hidden="true">↓</span></a>
-            <a class="button outline-on-dark" href="./presentation/team-sunkar-catalyst-2026.pdf" data-i="openDeck">Open presentation ↗</a>
+            <a class="button solid" href="#capture" data-i="runScenario">Open the hourly model</a>
+            <a class="hero-document" href="./presentation/team-sunkar-catalyst-2026.pdf" data-i="openDeck">Presentation (PDF)</a>
           </div>
         </div>
-        <figure class="hero-figure">
-          <img src="./dashboard/assets/tank-farm.webp" alt="Aerial photograph of above-ground crude oil storage tanks" width="1400" height="1120" fetchpriority="high">
-          <figcaption><span data-i="illustrative">Illustrative site photo</span> <a href="https://commons.wikimedia.org/wiki/File:United_States_Strategic_Petroleum_Reserve_012.jpg">U.S. DOE ↗</a></figcaption>
-        </figure>
+        <div class="hero-evidence">
+          <figure class="hero-figure">
+            <img src="./dashboard/assets/tank-farm.webp" alt="Aerial photograph of above-ground crude oil storage tanks" width="1400" height="1120" fetchpriority="high">
+            <figcaption><span data-i="illustrative">Illustrative site photo</span><a href="https://commons.wikimedia.org/wiki/File:United_States_Strategic_Petroleum_Reserve_012.jpg">U.S. DOE</a></figcaption>
+          </figure>
+          <section class="schedule-preview" aria-labelledby="preview-title">
+            <div class="preview-head"><h2 id="preview-title" data-i="previewTitle">Daily methane collection</h2><p id="preview-basis">70 Nm³/h · 90% header access</p></div>
+            <div class="preview-options">
+              <button type="button" data-schedule="sequential" data-jump-to-capture aria-pressed="true">
+                <span data-i="seq">Sequential</span><strong id="sequential-share">89.0%</strong>
+              </button>
+              <button type="button" data-schedule="simultaneous" data-jump-to-capture aria-pressed="false">
+                <span data-i="sim">Simultaneous</span><strong id="simultaneous-share">71.2%</strong>
+              </button>
+            </div>
+            <p id="schedule-impact">≈18 percentage points more with sequential filling</p>
+          </section>
+        </div>
       </div>
       <div class="wrap baseline">
-        <div><strong>6 × 5,000</strong><span data-i="baselineTank">m³ of tank capacity</span></div>
+        <div><strong data-i="baselineSize">6 × 5,000</strong><span data-i="baselineTank">m³ per tank</span></div>
         <div><strong>20</strong><span data-i="baselineRate">kg CH₄/h across the park</span></div>
-        <div><strong>175.2</strong><span data-i="baselineYear">t CH₄/year at the case rate</span></div>
-        <div><strong>4,765</strong><span data-i="baselineClimate">t CO₂e/year baseline</span></div>
+        <div><strong data-i="baselineTonnes">175.2</strong><span data-i="baselineYear">t CH₄/year at the case rate</span></div>
+        <div><strong data-i="baselineCo2">4,765</strong><span data-i="baselineClimate">t CO₂e/year baseline</span></div>
       </div>
     </section>
 
     <section class="wrap section" id="capture" aria-labelledby="capture-title">
       <div class="section-head">
         <div>
-          <p class="eyebrow" data-i="captureEyebrow">TANK FARM · 24-HOUR MODEL</p>
-          <h2 id="capture-title" data-i="captureTitle">How much methane gets collected?</h2>
-          <p class="lede" data-i="captureLead">Switch the filling schedule to see what happens when vapors reach the collection header faster than the VRU can take them.</p>
+          <h2 id="capture-title" tabindex="-1" data-i="captureTitle">Tank farm collection</h2>
+          <p class="lede" data-i="captureLead">Switch the filling schedule to see when vapors reach the header faster than the VRU can take them.</p>
         </div>
         <button type="button" class="button outline" id="share" data-i="share">Copy scenario link</button>
       </div>
@@ -140,12 +152,6 @@
         <div class="stat"><span data-i="annualUtilized">Annual CH₄ to site fuel</span><strong id="annual-utilized"></strong><small data-i="annualBasis">Repeats the selected day with the annual assumptions above.</small></div>
         <div class="stat"><span data-i="grossAnnual">Gross annual CH₄ benefit</span><strong id="annual-co2"></strong><small data-i="grossAnnualSub">CH₄ used × 27.2, before combustion CO₂ and energy use.</small></div>
       </div>
-      <div class="comparison-strip">
-        <span data-i="sameSetup">Same VRU and header assumptions</span>
-        <span><span data-i="seq">Sequential</span> <strong id="sequential-share"></strong></span>
-        <span><span data-i="sim">Simultaneous</span> <strong id="simultaneous-share"></strong></span>
-        <span id="schedule-impact"></span>
-      </div>
       <details class="method">
         <summary data-i="captureMethod">Collection model basis</summary>
         <p data-i="captureMethodText">Both schedules release 320 Nm³ during filling. Sequential filling releases 80 Nm³/h over four hours. Simultaneous filling releases 160 Nm³/h over two hours. The remaining daily vapor volume is distributed across the other hours. We assume 85 mol.% methane on a dry basis and equal daily emissions in both cases.</p>
@@ -157,9 +163,8 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="eyebrow" data-i="processEyebrow">ASPEN HYSYS V12 · PROCESS MODELS</p>
-            <h2 id="technology-title" data-i="technologyTitle">Four ways to treat the same vapor</h2>
-            <p class="lede" data-i="technologyLead">Compare the equipment loads and methane routed to product for each operating case.</p>
+            <h2 id="technology-title" data-i="technologyTitle">VRU technology comparison</h2>
+            <p class="lede" data-i="technologyLead">Four configurations under the same inlet conditions for each operating case.</p>
           </div>
           <a class="button outline" href="./workbooks/simulation-results.xlsx" download data-i="downloadExcel">Download Excel ↓</a>
         </div>
@@ -172,12 +177,25 @@
           <p class="case-feed" id="case-feed" aria-live="polite"></p>
         </div>
         <p id="data-status" class="data-status" role="status" data-i="dataLoading">Loading Aspen results…</p>
-        <div class="tech-grid" id="tech-grid" aria-label="Technology comparison"></div>
+        <div class="tech-results" id="tech-results" hidden>
+          <table class="tech-table" aria-labelledby="technology-title">
+            <thead>
+              <tr>
+                <th scope="col" data-i="techColumn">Technology</th>
+                <th scope="col" data-i="shaftColumn">Shaft power</th>
+                <th scope="col" data-i="methaneColumn">CH₄ to product</th>
+                <th class="tech-optional" scope="col" data-i="coolingColumn">Cooling duty</th>
+                <th class="tech-optional" scope="col" data-i="ventColumn">CH₄ to vent</th>
+              </tr>
+            </thead>
+            <tbody id="tech-grid"></tbody>
+          </table>
+        </div>
         <p class="results-note" data-i="processBoundary">Methane to product is a share of CH₄ already at the VRU inlet. Site-wide collection is modeled above. Cooling duty is thermal. Shaft power sums the modeled machines for each technology.</p>
         <aside class="process-feature" aria-labelledby="process-title">
           <div class="process-feature-header">
-            <div><p class="eyebrow" data-i="selectedProcess">SELECTED CONFIGURATION</p><h3 id="process-title" data-i="selectedTitle">Compression + cooling</h3></div>
-            <button type="button" class="button outline-on-dark" id="open-pfd" data-i="viewPfd">View team PFD ↗</button>
+            <h3 id="process-title" data-i="selectedTitle">Compression + cooling</h3>
+            <button type="button" class="button outline-on-dark" id="open-pfd" data-i="viewPfd">Process flow diagram</button>
           </div>
           <ol class="process-flow">
             <li><span class="step-id">01</span><b data-i="processHeader">Vapor header</b><small data-i="processHeaderSub">Six connected tanks</small></li>
@@ -194,9 +212,8 @@
     <section class="wrap section" id="economics" aria-labelledby="economics-title">
       <div class="section-head">
         <div>
-          <p class="eyebrow" data-i="economicsEyebrow">EXISTING ON-SITE GAS ENGINE</p>
-          <h2 id="economics-title" data-i="economicsTitle">What would it take to pay back?</h2>
-          <p class="lede" data-i="economicsLead">Compare payback with and without methane credits. The team assumes an existing gas engine with spare capacity.</p>
+          <h2 id="economics-title" data-i="economicsTitle">Payback with an existing gas engine</h2>
+          <p class="lede" data-i="economicsLead">Compare payback with and without methane credits. The calculation assumes an existing gas engine with spare capacity.</p>
         </div>
         <a class="button outline" href="./data/economics-deck.csv" download data-i="downloadCost">Download cost basis ↓</a>
       </div>
@@ -238,8 +255,7 @@
       <div class="wrap section">
         <div class="section-head">
           <div>
-            <p class="eyebrow" data-i="filesEyebrow">TEAM SUNKAR · PROJECT FILES</p>
-            <h2 id="files-title" data-i="filesTitle">Models, data and presentation</h2>
+            <h2 id="files-title" data-i="filesTitle">Project files</h2>
           </div>
         </div>
         <div class="file-grid">
@@ -255,11 +271,13 @@
   </main>
 
   <footer class="footer">
-    <div class="wrap footer-inner"><span>Team Sunkar · Catalyst 2026</span><span data-i="footerScope">Engineering case study based on case data and modeled scenarios.</span><a href="#main" data-i="backTop">Back to top ↑</a></div>
+    <div class="wrap footer-inner"><span>Team Sunkar / Catalyst 2026</span><a href="#main" data-i="backTop">Back to top ↑</a></div>
   </footer>
 
   <dialog id="evidence-dialog" aria-labelledby="evidence-title">
     <div class="dialog-head"><h2 id="evidence-title"></h2><form method="dialog"><button class="button outline" type="submit" data-i="close">Close</button></form></div>
+    <p id="evidence-basis" class="evidence-basis" hidden></p>
+    <dl id="evidence-metrics" class="evidence-metrics" hidden></dl>
     <img id="evidence-image" alt="" width="1920" height="1080">
     <div class="dialog-actions">
       <a class="button outline" id="evidence-source" target="_blank" rel="noopener" data-i="openImage">Open full image ↗</a>
