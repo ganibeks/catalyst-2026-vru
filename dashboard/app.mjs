@@ -2,7 +2,7 @@ import {
   baseline, collectionProfile, defaults, economics, generatedPerDay, hourlyCsv,
   parseCsv, scenarioUrl, stateFromUrl, technologies,
 } from "./model.mjs";
-import { message, russian } from "./copy.mjs?v=2";
+import { message, russian } from "./copy.mjs?v=3";
 import { chartHour, drawFlowChart } from "./chart.mjs?v=2";
 
 const get = id => document.getElementById(id);

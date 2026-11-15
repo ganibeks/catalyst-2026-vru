@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f0f4f4">
   <meta name="description" content="Team Sunkar's Catalyst 2026 dashboard for a six-tank oil farm. Explore methane collection, Aspen HYSYS scenarios and project economics.">
   <title>Team Sunkar | Catalyst 2026 VRU</title>
-  <link rel="stylesheet" href="./dashboard/styles.css?v=2">
-  <script type="module" src="./dashboard/app.mjs?v=2"></script>
+  <link rel="stylesheet" href="./dashboard/styles.css?v=3">
+  <script type="module" src="./dashboard/app.mjs?v=3"></script>
 </head>
 <body>
   <a class="skip" href="#main" data-i="skip">Skip to content</a>
@@ -42,12 +42,14 @@
           </div>
         </div>
         <div class="hero-evidence">
-          <figure class="hero-figure">
-            <img src="./dashboard/assets/tank-farm.webp" alt="Aerial photograph of above-ground crude oil storage tanks" width="1400" height="1120" fetchpriority="high">
-            <figcaption><span data-i="illustrative">Illustrative site photo</span><a href="https://commons.wikimedia.org/wiki/File:United_States_Strategic_Petroleum_Reserve_012.jpg">U.S. DOE</a></figcaption>
-          </figure>
+          <section class="capture-target" aria-labelledby="target-title">
+            <h2 id="target-title" data-i="targetTitle">Project target for methane capture</h2>
+            <strong>97–99%</strong>
+            <p data-i="targetBasis">At 98% capture, about 172 t of CH₄ per year on the case baseline.</p>
+            <a href="./presentation/team-sunkar-catalyst-2026.pdf#page=15" data-i="targetSource">Presentation, slide 15</a>
+          </section>
           <section class="schedule-preview" aria-labelledby="preview-title">
-            <div class="preview-head"><h2 id="preview-title" data-i="previewTitle">Daily methane collection</h2><p id="preview-basis">70 Nm³/h · 90% header access</p></div>
+            <div class="preview-head"><h2 id="preview-title" data-i="previewTitle">Modeled daily collection by filling schedule</h2><p id="preview-basis">70 Nm³/h · 90% header access</p></div>
             <div class="preview-options">
               <button type="button" data-schedule="sequential" data-jump-to-capture aria-pressed="true">
                 <span data-i="seq">Sequential</span><strong id="sequential-share">89.0%</strong>
